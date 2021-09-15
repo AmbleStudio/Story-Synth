@@ -78,7 +78,6 @@
 
       <!-- <div class="card shadow mb-4">
         <div class="card-body">
-<<<<<<< HEAD
           <div class="row">
             <div class="col">
               <a
@@ -98,8 +97,6 @@
 
       <!-- <div class="card shadow mb-4">
         <div class="card-body">
-=======
->>>>>>> origin/master
           <div class="row mb-4">
             <div class="col-sm-12 text-center">
               <h2>Games and Demos</h2>

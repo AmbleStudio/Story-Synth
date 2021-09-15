@@ -309,7 +309,8 @@ export default {
           gameTitle: "Æthelred's Academy for Aspiring Heroes",
           gameBlurb:
             "Tell silly stories about how aspiring heroes go on unlikely quests to earn dubious certifications in adventuring skills. By Greg and Randy Lubin.",
-          ogImage: "https://diegeticgames.com/uploads/aethelreds-logo-square.png",
+          ogImage:
+            "https://diegeticgames.com/uploads/aethelreds-logo-square.png",
         },
         gameRoute: {
           gameTitle: "TK",
@@ -355,7 +356,7 @@ export default {
         },
         {
           property: "og:site_name",
-          content: "Story Synth",
+          content: "Play.Amble.Studio",
           vmid: "og:site_name",
         },
         {
@@ -440,10 +441,12 @@ export default {
         this.customOptions = {
           gameTitle: "Æthelred's Academy for Aspiring Heroes",
           byline: "By Greg Lubin and Randy Lubin",
-          gameBlurb: '<h2>By Greg Lubin and Randy Lubin</h2><div class="text-left"><p>Tell silly stories about how aspiring heroes accept unlikely quests to earn dubious certificates.</p><p>Æthelred\'s Academy is a non-accredited, for-profit institution. Attendees earn their certifications by finding quest givers, going on quests, and demonstrating competency in their skills.</p><p>Improvise short stories about these aspiring adventures and see if they succeed!</p><h2 class="text-center">Info</h2><ul class="text-left"><li>2+ players</li><li>All ages</li><li>Play time: from 5 minutes to a two year "degree"</li><li>Genre: Fantasy</li><li>Tone: Comedy</li><li>Activity: improvising quest recaps</li></ul><p><i>Icons via Flaticon designers: Freepik, fjstudio, Eucalyp, and Pixel perfect</i></p>',
+          gameBlurb:
+            '<h2>By Greg Lubin and Randy Lubin</h2><div class="text-left"><p>Tell silly stories about how aspiring heroes accept unlikely quests to earn dubious certificates.</p><p>Æthelred\'s Academy is a non-accredited, for-profit institution. Attendees earn their certifications by finding quest givers, going on quests, and demonstrating competency in their skills.</p><p>Improvise short stories about these aspiring adventures and see if they succeed!</p><h2 class="text-center">Info</h2><ul class="text-left"><li>2+ players</li><li>All ages</li><li>Play time: from 5 minutes to a two year "degree"</li><li>Genre: Fantasy</li><li>Tone: Comedy</li><li>Activity: improvising quest recaps</li></ul><p><i>Icons via Flaticon designers: Freepik, fjstudio, Eucalyp, and Pixel perfect</i></p>',
           coverImage: "https://diegeticgames.com/uploads/aethelreds-logo.png",
-          style: "<style>.game-launcher .card-body {background-color: white;}</style>",
-          styleTemplate: "fantasy"
+          style:
+            "<style>.game-launcher .card-body {background-color: white;}</style>",
+          styleTemplate: "fantasy",
         };
 
         this.dataReady = true;
@@ -458,8 +461,7 @@ export default {
     //this.fetchAndCleanSheetData(correctGSheetID);
 
     // custom style template
-    let styleTemplate =
-      "style-template-" + this.customOptions.styleTemplate;
+    let styleTemplate = "style-template-" + this.customOptions.styleTemplate;
     let body = document.getElementsByClassName("non-footer-content")[0]; // document.body;
     body.classList.add(styleTemplate);
 
@@ -1783,7 +1785,8 @@ export default {
       var getURL =
         "https://sheets.googleapis.com/v4/spreadsheets/" +
         sheetID +
-        "?includeGridData=true&ranges=a1:aa100&key=" + process.env.VUE_APP_FIREBASE_API_KEY;
+        "?includeGridData=true&ranges=a1:aa100&key=" +
+        process.env.VUE_APP_FIREBASE_API_KEY;
 
       // For the published version - remove if you're hardcoding the data instead of using Google Sheets
       axios

@@ -319,7 +319,7 @@ export default {
         },
         {
           property: "og:site_name",
-          content: "Story Synth",
+          content: "Play.Amble.Studio",
           vmid: "og:site_name",
         },
         {
@@ -361,10 +361,10 @@ export default {
         routeFullPath = routeFullPath.slice(0, -1);
       }
 
-      let tempURL = routeFullPath + "/" + roomID
+      let tempURL = routeFullPath + "/" + roomID;
 
-      if (this.customOptions.facilitatorMode){
-        tempURL += '/facilitator/'
+      if (this.customOptions.facilitatorMode) {
+        tempURL += "/facilitator/";
       }
 
       return tempURL;
@@ -1661,7 +1661,8 @@ export default {
       var getURL =
         "https://sheets.googleapis.com/v4/spreadsheets/" +
         sheetID +
-        "?includeGridData=true&ranges=a1:aa100&key=" + process.env.VUE_APP_FIREBASE_API_KEY;
+        "?includeGridData=true&ranges=a1:aa100&key=" +
+        process.env.VUE_APP_FIREBASE_API_KEY;
 
       // For the published version - remove if you're hardcoding the data instead of using Google Sheets
       axios

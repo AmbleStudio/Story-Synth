@@ -884,7 +884,7 @@ export default {
         },
         {
           property: "og:url",
-          content: "https://storysynth.org/#" + this.$route.fullPath,
+          content: "https://play.amble.studio/#" + this.$route.fullPath,
           vmid: "og:url",
         },
         {
@@ -894,7 +894,7 @@ export default {
         },
         {
           property: "og:site_name",
-          content: "Story Synth",
+          content: "Play.Amble.Studio",
           vmid: "og:site_name",
         },
         {

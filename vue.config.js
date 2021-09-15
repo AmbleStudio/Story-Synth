@@ -4,7 +4,8 @@ module.exports = {
       registry: undefined,
       renderRoutes: [
         '/',
-        '/Games/ArribaTown/'
+        '/Games/Green-Hollow',
+        '/Games/Arriba-Town/',
         // '/Gallery/',
         // '/Games/Aethelreds-Academy/',
         // '/Games/Around-The-Realm/',

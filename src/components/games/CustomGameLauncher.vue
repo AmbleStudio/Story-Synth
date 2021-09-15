@@ -226,7 +226,7 @@
           </div>
 
           <div class="row mt-3 pt-4 pb-2 bg-light" v-if="customOptions.license">
-            <div
+            <!-- <div
               class="col-sm-6 mb-4 text-center"
               v-if="!customOptions.license.includes('NoDerivatives')"
             >
@@ -241,10 +241,10 @@
               <br />
               You can share this game as far and wide as you like. Just paste
               this page's URL where you think it'll find a friendly audience.
-            </div>
+            </div> -->
 
             <div
-              class="col-sm-6 text-center"
+              class="col-sm text-center"
               v-html="customOptions.license"
             ></div>
           </div>
@@ -287,6 +287,13 @@ export default {
         revShare: 0.2,
       },
       gameMetaData: {
+        "Green-Hollow": {
+          gameTitle: "Green Hollow",
+          gameBlurb:
+            "A gameful team-building exercise set in an ancient village thousands of years ago.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/05/Green-Hollow-Banner.jpeg",
+        },
         "Arriba-Town": {
           gameTitle: "Arriba Town",
           gameBlurb:
@@ -398,6 +405,26 @@ export default {
     //let correctGSheetID = ""
 
     switch (this.routeGSheetID) {
+      case "Green-Hollow":
+        //  correctGSheetID = "1ghm-XOUZlYaOeHcl0zer4KSpCMaoN5u_X7iWmN2TrjY"
+        this.customOptions = {
+          gameTitle: "Green Hollow",
+          byline: "By Amble Studio",
+          gameBlurb:
+            '<div class="text-left" style="white-space:normal">\n<p>A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
+          coverImage:
+            "https://amble.studio/wp-content/uploads/2021/05/Green-Hollow-Banner.jpeg",
+          style:
+            "<style>.game-launcher .card-body {background-color: white;}</style>",
+          styleTemplate: "green-hollow",
+          license:
+            '<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="http://amble.studio/green-hollow-game">Green Hollow</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://amble.studio">Amble Studio</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
+          facilitatorMode: "TRUE",
+        };
+        this.dataReady = true;
+
+        break;
+
       case "Arriba-Town":
         //  correctGSheetID = "1dJErJDT_WF99dDKRZZqAhx95zvuGQIyBlkEdZnMfTgA"
         this.customOptions = {

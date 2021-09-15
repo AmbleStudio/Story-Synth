@@ -1,5 +1,10 @@
 <template>
   <div class="">
+    <app-greenHollow
+      :roomID="$route.params.roomID"
+      v-if="routeGSheetID == 'Green-Hollow'"
+      :userRole="$route.params.userRole"
+    ></app-greenHollow>
     <app-arribaTown
       :roomID="$route.params.roomID"
       v-if="routeGSheetID == 'Arriba-Town'"
@@ -33,6 +38,7 @@
 </template>
 
 <script>
+import GreenHollow from "./GreenHollow.vue";
 import ArribaTown from "./ArribaTown.vue";
 import AethelredsAcedemy from "./AethelredsAcademy.vue";
 import AroundTheRealm from "./AroundTheRealm.vue";
@@ -44,6 +50,7 @@ import UmberdredInstitute from "./UmberdredInstitute.vue";
 export default {
   name: "app-customGameSession",
   components: {
+    "app-greenHollow": GreenHollow,
     "app-arribaTown": ArribaTown,
     "app-aethelredsAcademy": AethelredsAcedemy,
     "app-aroundTheRealm": AroundTheRealm,
@@ -59,10 +66,17 @@ export default {
   data: function () {
     return {
       gameMetaData: {
+        "Green-Hollow": {
+          gameTitle: "Green Hollow",
+          gameBlurb:
+            "A gameful team-building exercise set in an ancient village thousands of years ago.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/05/Green-Hollow-Banner.jpeg",
+        },
         "Arriba-Town": {
           gameTitle: "Arriba Town",
           gameBlurb:
-            "A tiny quest to find your path and change your village for the better..",
+            "A tiny quest to find your path and change your village for the better.",
           ogImage:
             "https://amble.studio/wp-content/uploads/2021/08/Arriba-Town.png",
         },

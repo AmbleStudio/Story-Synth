@@ -757,7 +757,7 @@
                 >Restart</b-button
               >
 
-              <!-- <b-button
+              <b-button
                 v-b-modal.modalNextDeckConfirm
                 variant="outline-dark"
                 v-if="
@@ -802,7 +802,7 @@
                 <b-dropdown-item v-on:click="shuffleLastCard('end')"
                   >Shuffle near end</b-dropdown-item
                 >
-              </b-dropdown> -->
+              </b-dropdown>
             </b-button-group>
           </div>
         </div>

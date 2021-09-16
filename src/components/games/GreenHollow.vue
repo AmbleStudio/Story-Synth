@@ -33,6 +33,26 @@
       </div>
       -->
 
+      <div
+        v-if="
+          dataReady &&
+          firebaseReady &&
+          roomInfo &&
+          Object.keys(roomInfo.extensionData).length > 1
+        "
+      >
+        <!-- This div: upper location for extensions -->
+
+        <app-extensionManager
+          @sync-extension="syncExtension()"
+          :extensionData="roomInfo.extensionData"
+          :extensionList="tempExtensionData"
+          :roomInfo="roomInfo"
+          :extensionLocation="'upper'"
+          class="extension-upper"
+        ></app-extensionManager>
+      </div>
+
       <!-- This div: Previous Card, Pause, and Next Card buttons -->
       <div
         class="row mb-4"

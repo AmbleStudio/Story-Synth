@@ -12,8 +12,19 @@
                   <div class="row editable-list-row" v-if="item && (item != 'EMPTY')">
                     <div class="col-sm justify-content-between d-flex my-1">
                       <span style="min-width:1em"></span>
-                      <div>{{item}}</div>
-                      <button class="btn btn-sm btn-outline-dark m-1" v-on:click="deleteItem(index)">x</button>
+                      <div v-if="index != currentEditIndex">{{item}}</div>
+                      <input v-else type="text" v-model="currentEditText" maxlength="50">
+                      <div>
+                        <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="editItem(index)" v-if="currentEditIndex !== index">
+                          <b-icon-pencil></b-icon-pencil>
+                        </button>
+                        <div v-else>
+                          <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="saveEditedItem(index)">
+                            <b-icon-check2></b-icon-check2>
+                          </button>
+                          <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="deleteItem(index)"><b-icon-trash></b-icon-trash></button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -39,6 +50,9 @@ export default {
   data: function() {
     return {
       newItem: null,
+      currentEditIndex: null,
+      currentEditText: "",
+
       error: null
     };
   },
@@ -53,6 +67,18 @@ export default {
       this.newItem = null
 
       this.$emit('process-extension-update', ['editableList',tempNewList.toString()])
+    },
+    editItem(index){
+      this.currentEditIndex = index;
+      this.currentEditText = this.editableList[index]
+    },
+    saveEditedItem(index){
+      this.editableList[index] = this.currentEditText
+
+      this.$emit('process-extension-update', ['editableList',this.editableList.toString()])
+
+      this.currentEditIndex = null
+      this.currentEditText = ""
     },
     deleteItem(index){
       

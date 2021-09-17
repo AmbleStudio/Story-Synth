@@ -292,7 +292,7 @@ export default {
           gameBlurb:
             "A gameful team-building exercise set in an ancient village thousands of years ago.",
           ogImage:
-            "https://amble.studio/wp-content/uploads/2021/05/Green-Hollow-Banner.jpeg",
+            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
         },
         "Arriba-Town": {
           gameTitle: "Arriba Town",
@@ -413,7 +413,7 @@ export default {
           gameBlurb:
             '<div class="text-left" style="white-space:normal">\n<p>A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
           coverImage:
-            "https://amble.studio/wp-content/uploads/2021/05/Green-Hollow-Banner.jpeg",
+            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
           style:
             "<style>.game-launcher .card-body {background-color: white;}</style>",
           styleTemplate: "green-hollow",

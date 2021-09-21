@@ -5,6 +5,7 @@ module.exports = {
       renderRoutes: [
         '/',
         '/Games/Green-Hollow',
+        '/Games/Green-Hollow-Test',
         '/Games/Arriba-Town/',
         // '/Gallery/',
         // '/Games/Aethelreds-Academy/',

@@ -11,16 +11,16 @@
           :routeRoomID="$route.params.roomID"
         ></app-roomLink>
 
-        <div v-if="$route.fullPath == '/'">
+        <div v-if="$route.fullPath == '/' || $route.fullPath == '/Games/'">
+          <app-gallery></app-gallery>
+        </div>
+
+        <div v-if="$route.fullPath == '/Homepage/'">
           <app-homepage
             :routeRoomID="$route.params.roomID"
             :routeGSheetID="$route.params.gSheetID"
             :routeGameType="$route.params.gameType"
           ></app-homepage>
-        </div>
-
-        <div v-if="$route.fullPath == '/Gallery/'">
-          <app-gallery></app-gallery>
         </div>
 
         <div v-if="!['Games', 'Gallery'].includes($route.params.gameType)">

@@ -7,7 +7,7 @@
       fixed="top"
       v-if="!$route.params.roomID"
     >
-      <b-navbar-brand href="/">Story Synth</b-navbar-brand>
+      <b-navbar-brand href="/">Play.Amble</b-navbar-brand>
       <b-navbar-toggle
         target="navbarSupportedContent"
         aria-controls="navbarSupportedContent"
@@ -18,8 +18,9 @@
 
       <b-collapse id="navbarSupportedContent" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/">Reset game</b-nav-item>
-          <b-nav-item href="https://amble.studio">Back to Amble</b-nav-item>
+          <b-nav-item href="https://amble.studio"
+            >Back to Amble.Studio</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

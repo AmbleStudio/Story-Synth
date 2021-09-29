@@ -2,11 +2,19 @@
   <div class="container">
     <div class="row my-4 pt-5">
       <div class="col-sm text-center">
-        <h1 class="mb-3">Games Gallery</h1>
-        <p>Check out these great games playable on Story Synth!</p>
+        <h1 class="mb-3">Welcome to Play.Amble</h1>
         <p>
-          Want your game added to the gallery? Email
-          <a href="mailto:gallery@storysynth.org">gallery@storysynth.org</a>
+          Play.Amble is a gaming platform that hosts some of Amble's digital
+          games.
+        </p>
+        <p>
+          It is based on the
+          <a href="http://storysynth.org">Story Synth</a> open source software
+          platform, which you can use to make your own story games.
+        </p>
+        <p>
+          Explore selected Amble games below, or visit our main site at
+          <a href="http://amble.studio">Amble.Studio</a> to learn more.
         </p>
       </div>
     </div>
@@ -47,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-xl-8 offset-xl-2 offset-lg-0 col-lg-12 col-md-4 mb-1">
         <div class="card shadow">
           <div class="card-body text-center">
@@ -68,7 +76,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -79,54 +87,13 @@ export default {
     return {
       gameList: [
         {
-          title: "Around the Realm",
-          credits: "By Randy Lubin",
+          title: "Green Hollow",
+          credits: "By Amble Studio",
           blurb:
-            "Tell the story of two companions racing around a fantasy world in order to win a wager.",
-          link: "/Games/Around-The-Realm",
+            "A gameful team-building exercise set in an ancient village thousands of years ago.",
+          link: "/Games/Green-Hollow/",
           image:
-            "https://img.itch.zone/aW1nLzQ4MzI3NjAucG5n/315x250%23cb/Kb6Vr8.png",
-        },
-        {
-          title: "Raised By Mechs",
-          credits: "By Raph D'Amico",
-          blurb:
-            "Tell the story of a group of children raised by their mech mother.",
-          link: "/Games/Raised-By-Mechs/",
-          image: "https://iili.io/f1F7F1.png",
-        },
-        {
-          title: "This Heart Within Me Burns",
-          credits: "By Sam Dunnewold",
-          blurb:
-            "Tell the story of adventurers trying to lift a curse that's befallen one of them.",
-          link: "/Shuffled/1WLy_IM9DehQbrBNjTdL67Bc-ZiW83INcfxlnzpDMqnA/",
-          image: "https://iili.io/q8gJR4.md.jpg",
-        },
-        {
-          title: "Clash at Ikara",
-          credits: "By Randy Lubin",
-          blurb:
-            "Tell the story of a group of heroes trying to protect a village from a bandit attack.",
-          link: "/Games/Clash-At-Ikara",
-          image:
-            "https://img.itch.zone/aW1nLzUxOTM4NzMucG5n/original/Pbl0xw.png",
-        },
-        {
-          title: "Reunion",
-          credits: "By Yoshi Creelman, Jenn Martin, Andy Munich",
-          blurb:
-            "Tell the story of a group coming back together after a long time apart.",
-          link: "/Shuffled/1rJ3L8E_sBEqiRO8ADQeSAS2UmcK9Xzk0g_F0d_XkkRc/",
-          image: "https://iili.io/fjX1ZQ.md.png",
-        },
-        {
-          title: "Æthelred's Academy for Aspiring Heroes",
-          credits: "By Greg Lubin and Randy Lubin",
-          blurb:
-            "Tell silly stories about how aspiring heroes accept unlikely quests to earn dubious certifications in adventuring skills.",
-          link: "/Games/Aethelreds-Academy",
-          image: "https://diegeticgames.com/uploads/aethelreds-logo.png",
+            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Rectangle.png",
         },
         {
           title: "Umberdred Institute for Emerging Evildoers",
@@ -137,29 +104,7 @@ export default {
           image:
             "https://img.itch.zone/aW1nLzY3NzQzNTIuanBn/315x250%23c/XQicpj.jpg",
         },
-        {
-          title: "Working For The Corp",
-          credits: "By Ken Davidson, with contributions from Jess Meir",
-          blurb:
-            "Play as workers at a cyberpunk megacorp who are tasked with defending key info from runners.  Will you defend The Corp?",
-          link: "/Shuffled/16jKRcMytaNLTdqHGWE00dFVaaihzD38ga1hTm1wr-iA",
-          image: "https://iili.io/f1Kl07.md.png",
-        },
-        {
-          title: "Compersion",
-          credits: "By Justin Ford",
-          blurb:
-            "Explore the excitement and intrigue of a polyamorous romance with the Queen in this GM-less game for 2-6 players.",
-          link: "https://storysynth.org/Shuffled/1XVd4Kgq3X3utOm25JXOsDbhI_jLjAHX8mGzpiT6Sgho/",
-          image: "https://iili.io/RuxtON.png",
-        },
-        {
-          title: "Dawn of the Monster Invasion",
-          credits: "By Randy Lubin",
-          blurb: "Create a monster movie spoof through six speeches.",
-          link: "https://monster.diegeticgames.com",
-          image: "https://diegeticgames.com/uploads/monster-game-cover-v2.png",
-        },
+
         /*{
           title: 'TK',
           credits: 'TK',

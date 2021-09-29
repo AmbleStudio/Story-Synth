@@ -6,27 +6,44 @@
         class="card shadow mb-4"
         style="margin-top: 76px"
       >
-        <!-- <div class="card-body">
+        <div class="card-body">
           <div id="homepage-intro-text" v-if="!$route.params.gSheetID">
             <div class="row mb-4">
               <div class="col-sm text-center">
-                <h1>Story Synth</h1>
-                <h3>Make, play, and share storytelling games</h3>
+                <h1>Welcome to Play.Amble</h1>
+                <!-- <h3>Make, play, and share storytelling games</h3> -->
               </div>
             </div>
 
-            <div class="embed-responsive embed-responsive-16by9 mb-3">
+            <!-- <div class="embed-responsive embed-responsive-16by9 mb-3">
               <video class="embed-responsive-item" autoplay loop controls muted>
                 <source
                   src="https://diegeticgames.com/uploads/story-synth-teaser.mp4"
                   type="video/mp4"
                 />
               </video>
-            </div>
+            </div> -->
 
             <div class="row mb-3">
               <div class="col-sm text-left">
                 <p>
+                  Play.Amble is a gaming platform that hosts some of Amble's
+                  digital games.
+                </p>
+                <p>
+                  It is based on the
+                  <a href="http://storysynth.org">Story Synth</a> open source
+                  software platform, which you can use to make your own story
+                  games.
+                </p>
+                <p>Here are the games that you can play here on Play.Amble.</p>
+                <p>
+                  You can learn more about our full suite of games and services
+                  on our main website at
+                  <a href="http://amble.studio">Amble.Studio</a>.
+                </p>
+
+                <!-- <p>
                   Story Synth is a free web platform for making, playing, and
                   sharing storytelling games:
                 </p>
@@ -69,11 +86,11 @@
                   <a href="https://docs.storysynth.org/guide/formats.html"
                     >Formats Page</a
                   >.
-                </p>
+                </p> -->
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
 
       <!-- <div class="card shadow mb-4">
@@ -187,7 +204,7 @@
       </div> -->
     </div>
 
-    <app-gameLauncherSingleGame
+    <!-- <app-gameLauncherSingleGame
       v-if="launcherOnHomepage"
       :gameRoute="String(launcherOnHomepage)"
     ></app-gameLauncherSingleGame>
@@ -196,19 +213,19 @@
       :routeRoomID="$route.params.roomID"
       :routeGSheetID="$route.params.gSheetID"
       :routeGameType="$route.params.gameType"
-    ></app-gameMaker>
+    ></app-gameMaker> -->
   </div>
 </template>
 
 <script>
-import GameMaker from "./GameMaker.vue";
-import GameLauncherSingleGame from "./GameLauncherSingleGame.vue";
+// import GameMaker from "./GameMaker.vue";
+// import GameLauncherSingleGame from "./GameLauncherSingleGame.vue";
 
 export default {
   name: "app-homepage",
   components: {
-    "app-gameMaker": GameMaker,
-    "app-gameLauncherSingleGame": GameLauncherSingleGame,
+    // "app-gameMaker": GameMaker,
+    // "app-gameLauncherSingleGame": GameLauncherSingleGame,
   },
   props: {
     routeGameType: String,
@@ -217,7 +234,7 @@ export default {
   },
   data() {
     return {
-      launcherOnHomepage: "/Games/Arriba-Town/", // if you want the game launcher on the homepage, add in the route up until the roomID e.g. "/Games/Around-The-Realm/"
+      launcherOnHomepage: false, // if you want the game launcher on the homepage, add in the route up until the roomID e.g. "/Games/Around-The-Realm/"
     };
   },
   mounted() {

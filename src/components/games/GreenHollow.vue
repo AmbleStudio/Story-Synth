@@ -525,7 +525,11 @@
         </div>
       </div>
       <p></p>
-
+      <!-- Visual separator -->
+      <hr />
+      <div style="margin-top: 20px">
+        <p style="text-align: center">Skip to any phase</p>
+      </div>
       <!-- This div: Popcard buttons -->
       <div
         class="row mb-4"
@@ -593,7 +597,7 @@
       </div>
       <p></p>
 
-      <!-- This div: Chapter nav -->
+      <!-- Chapter nav -->
       <div
         class="btn-container"
         v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
@@ -741,11 +745,13 @@
       <!-- This div: Restart, Last Card, Next Deck -->
       <div
         class="btn-container"
+        style="margin-top: 30px"
         v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
       >
         <div class="row mb-4">
           <div class="col-sm">
             <b-button-group aria-role="Deck control" class="d-flex w-100">
+              <!-- Restart button -->
               <b-button
                 v-b-modal.reshuffleConfirm
                 variant="outline-dark"
@@ -754,9 +760,9 @@
                   !customOptions.facilitatorMode || userRole == 'facilitator'
                 "
                 color="rgb(187, 138, 200)"
-                >Restart</b-button
+                >Restart and reshuffle</b-button
               >
-
+              <!-- Next deck button -->
               <b-button
                 v-b-modal.modalNextDeckConfirm
                 variant="outline-dark"
@@ -776,7 +782,8 @@
               >
                 Next Deck
               </b-button>
-              <b-dropdown
+              <!-- Last card dropdown -->
+              <!-- <b-dropdown
                 variant="outline-dark"
                 id="dropdown-1"
                 v-bind:text="customOptions.lastCardLabel"
@@ -802,7 +809,7 @@
                 <b-dropdown-item v-on:click="shuffleLastCard('end')"
                   >Shuffle near end</b-dropdown-item
                 >
-              </b-dropdown>
+              </b-dropdown> -->
             </b-button-group>
           </div>
         </div>

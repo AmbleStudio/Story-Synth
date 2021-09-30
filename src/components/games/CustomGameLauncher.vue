@@ -418,7 +418,7 @@ export default {
           gameTitle: "Green Hollow",
           byline: "By Amble Studio",
           gameBlurb:
-            '<div class="text-left" style="white-space:normal">\n<p>A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
+            '<div class="text-center" style="white-space:normal">\n<p>A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
           coverImage:
             "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
           style:
@@ -437,7 +437,7 @@ export default {
           gameTitle: "Green Hollow [Test]",
           byline: "By Amble Studio",
           gameBlurb:
-            '<div class="text-left" style="white-space:normal">\n<p>[TEST VERSION] A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
+            '<div class="text-center" style="white-space:normal">\n<p>[TEST VERSION] A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
           coverImage:
             "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
           style:

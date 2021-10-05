@@ -10,6 +10,11 @@
       v-if="routeGSheetID == 'Green-Hollow-Test'"
       :userRole="$route.params.userRole"
     ></app-greenHollowTest>
+    <app-officeHeroes
+      :roomID="$route.params.roomID"
+      v-if="routeGSheetID == 'Office-Heroes'"
+      :userRole="$route.params.userRole"
+    ></app-officeHeroes>
     <app-arribaTown
       :roomID="$route.params.roomID"
       v-if="routeGSheetID == 'Arriba-Town'"
@@ -45,6 +50,7 @@
 <script>
 import GreenHollow from "./GreenHollow.vue";
 import GreenHollowTest from "./GreenHollowTest.vue";
+import OfficeHeroes from "./OfficeHeroes.vue";
 import ArribaTown from "./ArribaTown.vue";
 import AethelredsAcedemy from "./AethelredsAcademy.vue";
 import AroundTheRealm from "./AroundTheRealm.vue";
@@ -58,6 +64,7 @@ export default {
   components: {
     "app-greenHollow": GreenHollow,
     "app-greenHollowTest": GreenHollowTest,
+    "app-officeHeroes": OfficeHeroes,
     "app-arribaTown": ArribaTown,
     "app-aethelredsAcademy": AethelredsAcedemy,
     "app-aroundTheRealm": AroundTheRealm,
@@ -86,6 +93,13 @@ export default {
             "[TEST VERSION] A gameful team-building exercise set in an ancient village thousands of years ago.",
           ogImage:
             "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
+        },
+        "Office-Heroes": {
+          gameTitle: "Office Heroes",
+          gameBlurb:
+            "[In development] A game of superheroes with wild, office-based powers.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/10/Office-Heroes-Square.png",
         },
         "Arriba-Town": {
           gameTitle: "Arriba Town",

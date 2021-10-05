@@ -15,7 +15,9 @@
           <app-gallery></app-gallery>
         </div>
 
-        <div v-if="$route.fullPath == '/Create/'">
+        <div
+          v-if="$route.fullPath == '/Create/' || $route.fullPath == '/create/'"
+        >
           <app-homepage
             :routeRoomID="$route.params.roomID"
             :routeGSheetID="$route.params.gSheetID"

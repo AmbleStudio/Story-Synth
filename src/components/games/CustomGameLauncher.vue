@@ -470,7 +470,7 @@ export default {
             "<style>.game-launcher .card-body {background-color: white;}</style>",
           styleTemplate: "green-hollow",
           license:
-            '<p>Office Heroes is a copyright of <a href="https://amble.studio">Amble Studio</a>, allrights reserved, 2021.</p><p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
+            '<p>Office Heroes is a copyright work of <a href="https://amble.studio">Amble Studio</a>, all rights reserved, 2021.</p><p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
         };
         this.dataReady = true;
 

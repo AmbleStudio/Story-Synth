@@ -10,7 +10,6 @@
           <div id="homepage-intro-text" v-if="!$route.params.gSheetID">
             <div class="row mb-4">
               <div class="col-sm text-center">
-                <h1>Welcome to Play.Amble</h1>
                 <!-- <h3>Make, play, and share storytelling games</h3> -->
               </div>
             </div>
@@ -27,20 +26,9 @@
             <div class="row mb-3">
               <div class="col-sm text-left">
                 <p>
-                  Play.Amble is a gaming platform that hosts some of Amble's
-                  digital games.
-                </p>
-                <p>
-                  It is based on the
-                  <a href="http://storysynth.org">Story Synth</a> open source
-                  software platform, which you can use to make your own story
-                  games.
-                </p>
-                <p>Here are the games that you can play here on Play.Amble.</p>
-                <p>
-                  You can learn more about our full suite of games and services
-                  on our main website at
-                  <a href="http://amble.studio">Amble.Studio</a>.
+                  Just like
+                  <a href="http://storysynth.org">Story Synth</a>, you can use
+                  Play.Amble to try making your own games.
                 </p>
 
                 <!-- <p>
@@ -207,24 +195,24 @@
     <!-- <app-gameLauncherSingleGame
       v-if="launcherOnHomepage"
       :gameRoute="String(launcherOnHomepage)"
-    ></app-gameLauncherSingleGame>
+    ></app-gameLauncherSingleGame> -->
     <app-gameMaker
       v-if="!launcherOnHomepage"
       :routeRoomID="$route.params.roomID"
       :routeGSheetID="$route.params.gSheetID"
       :routeGameType="$route.params.gameType"
-    ></app-gameMaker> -->
+    ></app-gameMaker>
   </div>
 </template>
 
 <script>
-// import GameMaker from "./GameMaker.vue";
+import GameMaker from "./GameMaker.vue";
 // import GameLauncherSingleGame from "./GameLauncherSingleGame.vue";
 
 export default {
   name: "app-homepage",
   components: {
-    // "app-gameMaker": GameMaker,
+    "app-gameMaker": GameMaker,
     // "app-gameLauncherSingleGame": GameLauncherSingleGame,
   },
   props: {

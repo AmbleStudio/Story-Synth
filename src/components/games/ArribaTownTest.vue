@@ -1210,8 +1210,8 @@ export default {
       // For published version, set getURL equal to the url of your spreadsheet
       var getURL =
         "https://sheets.googleapis.com/v4/spreadsheets/" +
-        "1dJErJDT_WF99dDKRZZqAhx95zvuGQIyBlkEdZnMfTgA" +
-        "?includeGridData=true&ranges=a1:aa100&key=" +
+        "1HW3W_vhg6I2O5mALsB2d70-5YHSK_CXDNmFZIiGVY48" +
+        "?includeGridData=true&ranges=a1:aa200&key=" +
         process.env.VUE_APP_FIREBASE_API_KEY;
 
       // For the published version - remove if you're hardcoding the data instead of using Google Sheets

@@ -20,6 +20,11 @@
       v-if="routeGSheetID == 'Arriba-Town'"
       :userRole="$route.params.userRole"
     ></app-arribaTown>
+    <app-arribaTownTest
+      :roomID="$route.params.roomID"
+      v-if="routeGSheetID == 'Arriba-Town-Test'"
+      :userRole="$route.params.userRole"
+    ></app-arribaTownTest>
     <app-aethelredsAcademy
       :roomID="$route.params.roomID"
       v-if="routeGSheetID == 'Aethelreds-Academy'"
@@ -52,6 +57,7 @@ import GreenHollow from "./GreenHollow.vue";
 import GreenHollowTest from "./GreenHollowTest.vue";
 import OfficeHeroes from "./OfficeHeroes.vue";
 import ArribaTown from "./ArribaTown.vue";
+import ArribaTownTest from "./ArribaTownTest.vue";
 import AethelredsAcedemy from "./AethelredsAcademy.vue";
 import AroundTheRealm from "./AroundTheRealm.vue";
 import ClashAtIkara from "./ClashAtIkara.vue";
@@ -66,6 +72,7 @@ export default {
     "app-greenHollowTest": GreenHollowTest,
     "app-officeHeroes": OfficeHeroes,
     "app-arribaTown": ArribaTown,
+    "app-arribaTownTest": ArribaTownTest,
     "app-aethelredsAcademy": AethelredsAcedemy,
     "app-aroundTheRealm": AroundTheRealm,
     "app-clashAtIkara": ClashAtIkara,
@@ -105,6 +112,13 @@ export default {
           gameTitle: "Arriba Town",
           gameBlurb:
             "A tiny quest to find your path and change your village for the better.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/08/Arriba-Town.png",
+        },
+        "Arriba-Town-Test": {
+          gameTitle: "Arriba Town",
+          gameBlurb:
+            "[TEST VERSION] A tiny quest to find your path and change your village for the better.",
           ogImage:
             "https://amble.studio/wp-content/uploads/2021/08/Arriba-Town.png",
         },

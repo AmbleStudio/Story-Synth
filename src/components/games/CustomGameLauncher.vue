@@ -315,6 +315,13 @@ export default {
           ogImage:
             "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
         },
+        "Arriba-Town-Test": {
+          gameTitle: "Arriba Town",
+          gameBlurb:
+            "[TEST VERSION] A tiny quest to find your path and change your village for the better.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
+        },
         "Around-The-Realm": {
           gameTitle: "Around The Realm",
           gameBlurb:
@@ -483,6 +490,24 @@ export default {
           byline: "By Amble Studio",
           gameBlurb:
             '<div class="text-left" style="white-space:normal">\n<p>A tiny quest to find your path and change your village for the better.\n</p>\n</div>',
+          coverImage:
+            "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
+          style:
+            "<style>.game-launcher .card-body {background-color: white;}</style>",
+          styleTemplate: "arriba",
+          facilitatorMode: "TRUE",
+        };
+        this.dataReady = true;
+
+        break;
+
+      case "Arriba-Town-Test":
+        //  correctGSheetID = "1dJErJDT_WF99dDKRZZqAhx95zvuGQIyBlkEdZnMfTgA"
+        this.customOptions = {
+          gameTitle: "Arriba Town",
+          byline: "By Amble Studio",
+          gameBlurb:
+            '<div class="text-left" style="white-space:normal">\n<p>[Test Version] A tiny quest to find your path and change your village for the better.\n</p>\n</div>',
           coverImage:
             "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
           style:

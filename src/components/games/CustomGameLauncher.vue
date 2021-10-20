@@ -212,7 +212,7 @@
                 :to="{ path: constructURL($route.fullPath, roomID) }"
               >
                 <button :disabled="!roomID" type="button" class="btn btn-dark">
-                  Join Session
+                  Create Session
                 </button>
               </router-link>
             </div>

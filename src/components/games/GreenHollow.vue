@@ -54,6 +54,7 @@
       </div>
 
       <!-- This div: Previous Card, Pause, and Next Card buttons -->
+
       <div
         class="row mb-4"
         v-if="
@@ -490,7 +491,10 @@
           <b-button
             v-b-modal.modalOne
             variant="outline-dark"
-            v-if="customOptions.modalOneLabel"
+            v-if="
+              customOptions.modalOneLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalOneFirstVisible
+            "
             >{{ customOptions.modalOneLabel }}</b-button
           >
 
@@ -508,7 +512,10 @@
           <b-button
             v-b-modal.modalTwo
             variant="outline-dark"
-            v-if="customOptions.modalTwoLabel"
+            v-if="
+              customOptions.modalTwoLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalTwoFirstVisible
+            "
             >{{ customOptions.modalTwoLabel }}</b-button
           >
 

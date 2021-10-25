@@ -479,7 +479,7 @@
           :roomInfo="roomInfo"
         ></app-extensionManager>
       </div>
-      <hr v-if="userRole == 'facilitator'" />
+
       <!-- This div: Optional modal buttons -->
       <div class="row">
         <div
@@ -491,7 +491,10 @@
           <b-button
             v-b-modal.modalOne
             variant="outline-dark"
-            v-if="customOptions.modalOneLabel"
+            v-if="
+              customOptions.modalOneLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalOneFirstVisible
+            "
             >{{ customOptions.modalOneLabel }}</b-button
           >
 
@@ -509,7 +512,10 @@
           <b-button
             v-b-modal.modalTwo
             variant="outline-dark"
-            v-if="customOptions.modalTwoLabel"
+            v-if="
+              customOptions.modalTwoLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalTwoFirstVisible
+            "
             >{{ customOptions.modalTwoLabel }}</b-button
           >
 
@@ -526,6 +532,8 @@
         </div>
       </div>
       <p></p>
+
+      <hr v-if="userRole == 'facilitator'" />
 
       <!-- This div: Popcard buttons -->
       <div
@@ -594,7 +602,7 @@
       </div>
       <p></p>
 
-      <!-- This div: Chapter nav -->
+      <!-- Chapter nav -->
       <div
         class="btn-container"
         v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
@@ -747,6 +755,7 @@
         <div class="row mb-4">
           <div class="col-sm">
             <b-button-group aria-role="Deck control" class="d-flex w-100">
+              <!-- Restart button -->
               <b-button
                 v-b-modal.reshuffleConfirm
                 variant="outline-dark"
@@ -755,7 +764,7 @@
                   !customOptions.facilitatorMode || userRole == 'facilitator'
                 "
                 color="rgb(187, 138, 200)"
-                >Restart</b-button
+                >Restart and reshuffle</b-button
               >
 
               <!-- <b-button
@@ -905,7 +914,7 @@ export default {
         },
         {
           property: "og:url",
-          content: "https://storysynth.org/#" + this.$route.fullPath,
+          content: "https://play.amble.studio/#" + this.$route.fullPath,
           vmid: "og:url",
         },
         {

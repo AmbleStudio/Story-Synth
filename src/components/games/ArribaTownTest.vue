@@ -602,7 +602,7 @@
       </div>
       <p></p>
 
-      <!-- This div: Chapter nav -->
+      <!-- Chapter nav -->
       <div
         class="btn-container"
         v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
@@ -755,6 +755,7 @@
         <div class="row mb-4">
           <div class="col-sm">
             <b-button-group aria-role="Deck control" class="d-flex w-100">
+              <!-- Restart button -->
               <b-button
                 v-b-modal.reshuffleConfirm
                 variant="outline-dark"
@@ -763,7 +764,7 @@
                   !customOptions.facilitatorMode || userRole == 'facilitator'
                 "
                 color="rgb(187, 138, 200)"
-                >Restart</b-button
+                >Restart and reshuffle</b-button
               >
 
               <!-- <b-button
@@ -913,7 +914,7 @@ export default {
         },
         {
           property: "og:url",
-          content: "https://storysynth.org/#" + this.$route.fullPath,
+          content: "https://play.amble.studio/#" + this.$route.fullPath,
           vmid: "og:url",
         },
         {

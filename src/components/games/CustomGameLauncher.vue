@@ -514,6 +514,7 @@ export default {
             "<style>.game-launcher .card-body {background-color: white;}</style>",
           styleTemplate: "arriba",
           facilitatorMode: "TRUE",
+          password: "arriba",
         };
         this.dataReady = true;
 

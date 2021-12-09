@@ -94,11 +94,9 @@
           "
         >
           <div class="col-sm text-center">
-            <router-link
-              :to="{ path: constructURL($route.fullPath, roomID) }"
-            >
+            <router-link :to="{ path: constructURL($route.fullPath, roomID) }">
               <button :disabled="!roomID" type="button" class="btn btn-dark">
-                Join Session
+                Create Session
               </button>
             </router-link>
           </div>
@@ -148,7 +146,17 @@ export default {
         location.hostname.toString() + "/#" + this.$route.fullPath;
     },
     constructURL(routeFullPath, roomID) {
-      return this.gameRoute + roomID;
+      if (routeFullPath.slice(-1) == "/") {
+        routeFullPath = routeFullPath.slice(0, -1);
+      }
+
+      let tempURL = routeFullPath + "/Games/Arriba-Town/" + roomID;
+
+      if (this.customOptions.facilitatorMode) {
+        tempURL += "/facilitator/";
+      }
+
+      return tempURL;
     },
     recreateSheetURL(sheetID) {
       return "https://docs.google.com/spreadsheets/d/" + sheetID;
@@ -202,7 +210,7 @@ export default {
         "army",
         "aroma",
         "array",
-        "arson",
+        // "arson",
         "art",
         "ashen",
         "ashes",
@@ -370,7 +378,7 @@ export default {
         "coat",
         "cod",
         "coil",
-        "coke",
+        // "coke",
         "cola",
         "cold",
         "colt",
@@ -436,7 +444,7 @@ export default {
         "deal",
         "dean",
         "debit",
-        "debt",
+        // "debt",
         "debug",
         "decaf",
         "decal",
@@ -512,7 +520,7 @@ export default {
         "east",
         "eaten",
         "eats",
-        "ebay",
+        // "ebay",
         "ebony",
         "ebook",
         "echo",
@@ -699,7 +707,7 @@ export default {
         "hull",
         "human",
         "humid",
-        "hump",
+        // "hump",
         "hung",
         "hunk",
         "hunt",
@@ -814,7 +822,7 @@ export default {
         "mate",
         "math",
         "mocha",
-        "moist",
+        // "moist",
         "mold",
         "mom",
         "moody",
@@ -888,7 +896,7 @@ export default {
         "panda",
         "panic",
         "pants",
-        "panty",
+        // "panty",
         "paper",
         "park",
         "party",
@@ -980,7 +988,7 @@ export default {
         "rage",
         "raid",
         "rail",
-        "rake",
+        // "rake",
         "rally",
         "ramp",
         "ranch",

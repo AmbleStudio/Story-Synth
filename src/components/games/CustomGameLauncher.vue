@@ -177,14 +177,14 @@
               </div>
             </div>
           </div>
-
+          <!--PASSWORD SECTION - div appears only if custom option is on-->
           <div class="row" v-if="customOptions.password">
             <div class="col-sm form-group">
               <label for="passwordInput">Password</label>
 
               <svg
                 v-b-tooltip.hover
-                title="The password provide by the game designer or publisher"
+                title="The password provided by the game designer or publisher"
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
@@ -200,7 +200,7 @@
               <input type="text" class="form-control" v-model="passwordInput" />
             </div>
           </div>
-
+          <!--CREATE SESSION BUTTON - div appears only if password is entered, or password option is off-->
           <div
             class="row mb-5"
             v-if="

@@ -5,6 +5,7 @@
 
       <div class="row">
         <div class="col-sm">
+          <b-alert show class="demoInfo" variant="info" v-if="customOptions.demoInfo">This demo is powered by <a :href="customOptions.demoInfo" target="_blank">this Google Sheet Template</a>. Copy the sheet and start editing it to design your own game!</b-alert>
           <h1 class="game-meta">Sandbox</h1>
           <div v-if="dataReady && firebaseReady && roomInfo && Object.keys(roomInfo.extensionData).length > 1">
             <app-extensionManager @sync-extension="syncExtension()" :extensionData="roomInfo.extensionData" :extensionList="tempExtensionData" :roomInfo="roomInfo"></app-extensionManager>
@@ -125,7 +126,7 @@ export default {
       }
 
       // For published version, set getURL equal to the url of your spreadsheet
-      var getURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetID + '?includeGridData=true&ranges=a1:aa100&key=' + process.env.VUE_APP_FIREBASE_API_KEY
+      var getURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetID + '?includeGridData=true&ranges=a1:aa400&key=' + process.env.VUE_APP_FIREBASE_API_KEY
 
 
       // For the published version - remove if you're hardcoding the data instead of using Google Sheets

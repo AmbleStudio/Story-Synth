@@ -1,53 +1,35 @@
 <template>
   <div class="roomLink-section">
-    <div class="container game-room" v-if="$route.params.roomID">
-      <div class="row mb-4">
-        <div class="col">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <button
-                class="btn btn-dark"
-                @click="$bvToast.show('copyToast')"
-                v-on:click="copyTextToClipboard()"
-                type="button"
-              >
-                🔗
-              </button>
-            </div>
-            <input
-              style="cursor: pointer"
-              @click="$bvToast.show('copyToast')"
-              v-on:click="copyTextToClipboard()"
-              id="urlForCopying"
-              type="text"
-              class="form-control"
-              :value="currentUrl"
-              title="the page url, readonly"
-              readonly="readonly"
-            />
+    <div class="room-link flex-row d-flex" v-if="$route.params.roomID">
+      <transition name="bounce" mode="out-in">
+        <div
+          v-if="roomInfo"
+          :key="Object.keys(roomInfo).length"
+          class="pt-2 px-2 game-meta live-player-counter"
+          v-bind:style="{ color: color }"
+        >
+          {{ Object.keys(roomInfo).length }} 👀
+        </div>
+      </transition>
 
-            <b-toast
-              variant="success"
-              id="copyToast"
-              auto-hide-delay="1000"
-              no-close-button
-            >
-              Link copied to clipboard
-            </b-toast>
-          </div>
-        </div>
-        <div class="col-3">
-          <transition name="bounce" mode="out-in">
-            <p
-              v-if="roomInfo"
-              :key="Object.keys(roomInfo).length"
-              class="pt-2 game-meta"
-            >
-              {{ Object.keys(roomInfo).length }} 👀
-            </p>
-          </transition>
-        </div>
-      </div>
+      <button
+        class="btn btn-outline-dark ml-auto border-0"
+        @click="$bvToast.show('copyToast')"
+        v-on:click="copyTextToClipboard()"
+        type="button"
+        v-bind:style="{ color: color }"
+      >
+        <b-icon-link45deg></b-icon-link45deg> Copy URL
+      </button>
+
+      <b-toast
+        variant="success"
+        id="copyToast"
+        auto-hide-delay="1000"
+        no-close-button
+      >
+        Link copied to clipboard
+      </b-toast>
     </div>
   </div>
 </template>
@@ -61,6 +43,7 @@ export default {
   name: "app-roomLink",
   props: {
     routeRoomID: String,
+    color: String,
   },
   data() {
     return {
@@ -69,6 +52,7 @@ export default {
       gSheetID: null,
       currentUrl: location.hostname.toString() + "/" + this.$route.fullPath,
       roomInfo: {},
+      context: null,
     };
   },
   firebase: {
@@ -82,7 +66,7 @@ export default {
         "/" +
         Math.trunc(Math.random() * 100000).toString();
 
-      var userRef = rtdb.ref(tempUserRef);
+      let userRef = rtdb.ref(tempUserRef);
 
       amOnline.on("value", function (snapshot) {
         if (snapshot.val()) {
@@ -149,24 +133,34 @@ export default {
           "/" +
           this.$route.params.roomID +
           "/player/";
-        console.log(
-          "current URL is now",
-          this.$route.params.userRole,
-          this.currentUrl
-        );
       }
+      console.log(
+        "current URL is now",
+        this.$route.params.userRole,
+        this.currentUrl
+      );
     },
     copyTextToClipboard() {
-      var copyText = document.getElementById("urlForCopying");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      document.execCommand("copy");
+      navigator.clipboard.writeText(this.currentUrl).then(
+        function () {
+          console.log("copied url");
+        },
+        function () {
+          console.log("copy failed");
+        }
+      );
     },
   },
 };
 </script>
 
 <style scoped>
+.room-link {
+}
+
+.live-player-counter {
+  color: #343a40;
+}
 .bounce-enter-active {
   animation: bounce-in 0.5s;
 }

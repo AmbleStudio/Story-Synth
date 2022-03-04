@@ -2,15 +2,9 @@
   <div id="app">
     <!-- <router-view></router-view>-->
     <div v-if="$route.path !== '/about'">
-      <div class="navbar">
-        <app-header class=""></app-header>
-      </div>
-      <div class="non-footer-content">
-        <app-roomLink
-          class="d-none d-sm-block"
-          :routeRoomID="$route.params.roomID"
-        ></app-roomLink>
+      <app-header class=""></app-header>
 
+      <div class="non-footer-content">
         <div v-if="$route.fullPath == '/' || $route.fullPath == '/Games/'">
           <app-gallery></app-gallery>
         </div>
@@ -25,7 +19,13 @@
           ></app-homepage>
         </div>
 
-        <div v-if="!['Games', 'Gallery'].includes($route.params.gameType)">
+        <div
+          v-if="
+            !['Games', 'Grants', 'Gallery', 'Formats', 'Upload'].includes(
+              $route.params.gameType
+            )
+          "
+        >
           <!--For published version, remove any components you aren't using -->
           <div v-if="!$route.params.roomID && $route.params.gSheetID">
             <app-gameLauncher
@@ -109,7 +109,12 @@
         </div>
       </div>
 
-      <app-footer v-if="$route.params.roomID"></app-footer>
+      <app-footer
+        v-if="
+          $route.params.roomID &&
+          ['Timed', 'SecretCards'].includes($route.params.gameType)
+        "
+      ></app-footer>
     </div>
   </div>
 </template>
@@ -119,12 +124,10 @@ import firebase from "firebase";
 
 // Remove for published version any components you aren't using
 import Header from "./components/layout/Header.vue";
-import RoomLink from "./components/layout/RoomLink.vue";
 import Footer from "./components/layout/Footer.vue";
 
-import Homepage from "./components/launchers/Homepage.vue";
-import Gallery from "./components/launchers/Gallery.vue";
-
+import Homepage from "./components/other/Homepage.vue";
+import Gallery from "./components/other/Gallery.vue";
 import GameLauncher from "./components/launchers/GameLauncher.vue";
 import CustomGameLauncher from "./components/games/CustomGameLauncher.vue";
 import CustomGameSessionManager from "./components/games/CustomGameSessionManager.vue";
@@ -145,13 +148,15 @@ export default {
   components: {
     // Remove unused components from the published version
     "app-header": Header,
-    "app-roomLink": RoomLink,
     "app-footer": Footer,
+
     "app-homepage": Homepage,
+
     "app-gallery": Gallery,
     "app-gameLauncher": GameLauncher,
     "app-customGameLauncher": CustomGameLauncher,
     "app-customGameSessionManager": CustomGameSessionManager,
+
     "app-timed": Timed,
     "app-shuffled": Shuffled,
     "app-monster": Monster,
@@ -238,6 +243,10 @@ export default {
 </script>
 
 <style lang="scss">
+a {
+  color: #0071eb;
+}
+
 html {
   height: 100%;
 }
@@ -245,6 +254,11 @@ html {
 .btn-outline-dark:not(:hover),
 .btn-outline-primary:not(:hover) {
   background-color: white;
+}
+
+.menu-bar .btn-outline-dark:not(:hover),
+.menu-bar .btn-outline-primary:not(:hover) {
+  background-color: transparent;
 }
 
 .message {
@@ -260,12 +274,11 @@ html {
   opacity: 0;
 }
 
-#app {
+.app-main {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000d1b;
-  padding-top: 20px;
 
   position: relative;
   min-height: 100vh;
@@ -278,7 +291,6 @@ html {
 
 body {
   background: var(--light);
-  height: 100%;
   margin: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -304,6 +316,17 @@ li {
   margin-left: 1.2rem;
 }
 
+.margin-between-sections {
+  margin-bottom: 116px;
+}
+
+.padding-after-navbar {
+  padding-top: 124px;
+}
+.navbar {
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
 ul.navbar-nav {
   list-style-type: none;
 }
@@ -313,7 +336,133 @@ li.nav-item {
   margin: 0 10px;
 }
 
+.app-main .shadow {
+  box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075) !important
+    ;
+}
+
+.extension h2 {
+  font-size: 1.5rem;
+}
+
 .non-footer-content {
-  padding-bottom: 3rem;
+  padding-bottom: 8.5rem;
+}
+
+.demoInfo {
+  a {
+    color: black;
+  }
+}
+
+// Utility classes
+:root {
+  --ds-rounding: 14px;
+}
+.rounded-m {
+  border-radius: var(--ds-rounding);
+}
+.clipped {
+  overflow: hidden;
+}
+.card {
+  border-radius: var(--ds-rounding);
+  overflow: hidden;
+}
+.card-img {
+  border-radius: 0;
+}
+
+.btn-fab.shadow {
+  border-width: 0;
+  box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075),
+    0 0px 5px hsl(0deg 0% 0% / 0.15) !important
+    ;
+}
+.btn-fab:not(:hover) {
+  background: white;
+}
+.btn-fab svg {
+  transition: transform 0.2s;
+}
+.btn-fab:hover:not([disabled="disabled"]) svg {
+  transform: scale(1.1);
+}
+.btn-fab[disabled="disabled"] {
+  background: white;
+
+  svg {
+    color: var(--secondary);
+  }
+}
+
+@media (max-width: 800px) {
+  .fab-buttons {
+    position: fixed;
+    width: calc(100vw - 30px);
+    z-index: 100000;
+    bottom: 48px;
+  }
+  .btn-fab {
+    --fab-diameter: 90px;
+    --fab-spacing: 28px;
+    border-radius: var(--fab-diameter);
+    width: var(--fab-diameter);
+    height: var(--fab-diameter);
+
+    // &.btn-fab-left {
+    //
+    // }
+
+    &.btn-fab-right {
+      margin-left: var(--fab-spacing);
+    }
+  }
+}
+@media (min-width: 800px) {
+  .fab-buttons {
+    position: relative;
+    width: 100%;
+  }
+  .btn-fab {
+    --fab-diameter: 90px;
+    border-radius: var(--fab-diameter);
+    width: var(--fab-diameter);
+    height: var(--fab-diameter);
+    margin-top: 120px;
+    position: absolute;
+
+    &.btn-fab-left {
+      left: calc(-20px - var(--fab-diameter));
+    }
+    &.btn-fab-right {
+      right: calc(-20px - var(--fab-diameter));
+    }
+  }
+}
+
+.menu-row {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.demoInfo,
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  text-shadow: none !important;
+
+  a {
+    color: #0071eb !important;
+  }
+}
+
+.edit-button {
+  border: none;
 }
 </style>

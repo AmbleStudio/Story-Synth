@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row my-4 pt-5">
+    <div class="row mb-4 padding-after-navbar">
       <div class="col-sm text-center">
         <h1 class="mb-3">Welcome to Play.Amble</h1>
         <p>
@@ -45,7 +45,6 @@
                 <div class="card-text">{{ game.blurb }}</div>
                 <b-button
                   v-bind:href="game.link"
-                  variant="dark"
                   class="mt-auto align-self-end stretched-link"
                   >Play</b-button
                 >
@@ -55,28 +54,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-xl-8 offset-xl-2 offset-lg-0 col-lg-12 col-md-4 mb-1">
-        <div class="card shadow">
-          <div class="card-body text-center">
-            <h2>Story Synth Summer Jam 2021</h2>
-            <p>
-              Check out the great submissions to the
-              <a href="https://itch.io/jam/story-synth-summer-jam/entries"
-                >Story Synth Summer Jam 2021</a
-              >
-            </p>
-            <a href="https://itch.io/jam/story-synth-summer-jam/entries">
-              <img
-                src="https://diegeticgames.com/uploads/story-synth-summer-jam-2021-gallery.png"
-                alt="gallery image of game submissions to the story synth summer jam"
-                class="img-fluid"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -159,7 +136,7 @@ export default {
         },
         {
           property: "og:site_name",
-          content: "Play.Amble.Studio",
+          content: "Story Synth",
           vmid: "og:site_name",
         },
         {
@@ -171,6 +148,10 @@ export default {
     };
   },
   mounted() {
+    let body = document.getElementById("app"); // document.body;
+    body.classList.remove(body.classList[0]);
+    body.classList.add("style-template-homepage");
+
     document.dispatchEvent(new Event("x-app-rendered"));
     if (location.hostname.toString() !== "localhost") {
       this.$mixpanel.track("Visited Gallery");

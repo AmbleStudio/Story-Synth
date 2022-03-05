@@ -10,6 +10,11 @@
       v-if="routeGSheetID == 'Green-Hollow-Test'"
       :userRole="$route.params.userRole"
     ></app-greenHollowTest>
+    <app-greenHollowNew
+      :roomID="$route.params.roomID"
+      v-if="routeGSheetID == 'Green-Hollow-New'"
+      :userRole="$route.params.userRole"
+    ></app-greenHollowNew>
     <app-officeHeroes
       :roomID="$route.params.roomID"
       v-if="routeGSheetID == 'Office-Heroes'"
@@ -55,6 +60,7 @@
 <script>
 import GreenHollow from "./GreenHollow.vue";
 import GreenHollowTest from "./GreenHollowTest.vue";
+import GreenHollowNew from "./GreenHollowNew.vue";
 import OfficeHeroes from "./OfficeHeroes.vue";
 import ArribaTown from "./ArribaTown.vue";
 import ArribaTownTest from "./ArribaTownTest.vue";
@@ -70,6 +76,7 @@ export default {
   components: {
     "app-greenHollow": GreenHollow,
     "app-greenHollowTest": GreenHollowTest,
+    "app-greenHollowNew": GreenHollowNew,
     "app-officeHeroes": OfficeHeroes,
     "app-arribaTown": ArribaTown,
     "app-arribaTownTest": ArribaTownTest,
@@ -98,6 +105,13 @@ export default {
           gameTitle: "Green Hollow [TEST]",
           gameBlurb:
             "[TEST VERSION] A gameful team-building exercise set in an ancient village thousands of years ago.",
+          ogImage:
+            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
+        },
+        "Green-Hollow-New": {
+          gameTitle: "Green Hollow [UPDATES]",
+          gameBlurb:
+            "[UPDATES] A gameful team-building exercise set in an ancient village thousands of years ago.",
           ogImage:
             "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
         },

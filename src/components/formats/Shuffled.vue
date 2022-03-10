@@ -12,7 +12,6 @@
       >
         <b-icon-list></b-icon-list> Menu
       </button>
-      <!-- <div v-if="customOptions.gameTitle" class="mx-auto align-middle text-center">{{customOptions.gameTitle}}</div> -->
       <app-roomLink
         class="d-none d-sm-block"
         :routeRoomID="$route.params.roomID"

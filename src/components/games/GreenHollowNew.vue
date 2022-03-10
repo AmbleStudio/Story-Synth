@@ -12,6 +12,7 @@
       >
         <b-icon-list></b-icon-list> Menu
       </button>
+
       <app-roomLink
         class="d-none d-sm-block"
         :routeRoomID="$route.params.roomID"
@@ -27,30 +28,6 @@
         <b-container>
           <div class="row menu-row">
             <b-button
-              class="border-0 btn-lg btn-block"
-              v-on:click="
-                copyLinkToClipboard();
-                closeMenu();
-              "
-              @click="$bvToast.show('copyToast')"
-            >
-              <b-icon-link45deg></b-icon-link45deg> Copy URL
-            </b-button>
-          </div>
-          <div class="row menu-row">
-            <b-button
-              v-b-modal.reshuffleConfirm
-              v-on:click="closeMenu()"
-              class="control-button-restart btn-lg btn-block"
-              variant="outline-dark"
-              :disabled="roomInfo.xCardIsActive"
-              v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
-              color="rgb(187, 138, 200)"
-              >Restart</b-button
-            >
-          </div>
-          <div class="row menu-row">
-            <b-button
               variant="outline-dark"
               class="control-button-safety-card btn-lg btn-block"
               v-on:click="
@@ -64,6 +41,282 @@
               "
             ></b-button>
           </div>
+          <!-- modals section -->
+          <div
+            class=""
+            v-if="customOptions.modalOneLabel || customOptions.modalTwoLabel"
+          >
+            <hr class="mb-4" />
+            <div class="row menu-row">
+              <b-button
+                v-b-modal.modalOne
+                v-on:click="closeMenu()"
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="customOptions.modalOneLabel"
+              >
+                {{ customOptions.modalOneLabel }}
+              </b-button>
+            </div>
+            <div class="row menu-row">
+              <b-button
+                v-b-modal.modalTwo
+                v-on:click="closeMenu()"
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="customOptions.modalTwoLabel"
+                >{{ customOptions.modalTwoLabel }}</b-button
+              >
+            </div>
+          </div>
+          <!-- chapter navigation section -->
+          <div
+            class=""
+            v-if="
+              customOptions.chapterOneLabel ||
+              customOptions.chapterTwoLabel ||
+              customOptions.chapterThreeLabel ||
+              customOptions.chapterFourLabel ||
+              customOptions.chapterFiveLabel ||
+              customOptions.chapterSixLabel
+            "
+          >
+            <hr class="mb-4" />
+            <h6
+              class="text-center"
+              v-if="
+                customOptions.chaptersMenuHeader &&
+                (!customOptions.facilitatorMode || userRole == 'facilitator')
+              "
+            >
+              {{ customOptions.chaptersMenuHeader }}
+            </h6>
+            <!-- chapter one button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterOneFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterOneFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterOneLabel }}
+              </b-button>
+            </div>
+            <!-- chapter two button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterTwoFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterTwoFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterTwoLabel }}
+              </b-button>
+            </div>
+            <!-- chapter three button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterThreeFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterThreeFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterThreeLabel }}
+              </b-button>
+            </div>
+            <!-- chapter four button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterFourFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterFourFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterFourLabel }}
+              </b-button>
+            </div>
+            <!-- chapter five button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterFiveFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterFiveFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterFiveLabel }}
+              </b-button>
+            </div>
+            <!-- chapter six button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  goToChapter(customOptions.chapterSixFirstCard);
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.chapterSixFirstCard &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.chapterSixLabel }}
+              </b-button>
+            </div>
+          </div>
+          <!-- popcards section -->
+          <div
+            class=""
+            v-if="
+              customOptions.popCardOneLabel ||
+              customOptions.popCardTwoLabel ||
+              customOptions.popCardThreeLabel
+            "
+          >
+            <hr class="mb-4" />
+            <h6
+              class="text-center"
+              v-if="
+                customOptions.popCardsMenuHeader &&
+                (!customOptions.facilitatorMode || userRole == 'facilitator')
+              "
+            >
+              {{ customOptions.popCardsMenuHeader }}
+            </h6>
+            <!-- popcard one button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  popCardOne();
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.popCardOneLabel &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardTwoIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.popCardOneLabel }}
+              </b-button>
+            </div>
+            <!-- popcard two button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  popCardTwo();
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.popCardTwoLabel &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardThreeIsActive
+                "
+              >
+                {{ customOptions.popCardTwoLabel }}
+              </b-button>
+            </div>
+            <!-- popcard three button -->
+            <div class="row menu-row">
+              <b-button
+                v-on:click="
+                  popCardThree();
+                  closeMenu();
+                "
+                variant="outline-dark"
+                class="btn-block btn-lg"
+                v-if="
+                  customOptions.popCardThreeLabel &&
+                  (!customOptions.facilitatorMode || userRole == 'facilitator')
+                "
+                :disabled="
+                  roomInfo.xCardIsActive ||
+                  roomInfo.popCardOneIsActive ||
+                  roomInfo.popCardTwoIsActive
+                "
+              >
+                {{ customOptions.popCardThreeLabel }}
+              </b-button>
+            </div>
+          </div>
+          <!-- next deck button -->
           <div class="row menu-row">
             <b-button
               v-on:click="
@@ -87,6 +340,7 @@
               "
             ></b-button>
           </div>
+          <!-- go to last card button -->
           <div
             v-if="customOptions.treatLastCardAsLastDeck"
             :disabled="roomInfo.currentCardIndex >= roomInfo.locationOfLastCard"
@@ -108,10 +362,12 @@
               Go to {{ customOptions.lastCardLabel }}
             </b-button>
           </div>
-          <!-- <div
+          <!-- last card management section -->
+          <div
             v-if="
               !customOptions.treatLastCardAsLastDeck &&
               !this.customOptions.showNextDeckButton &&
+              !customOptions.hideLastCardOptions &&
               (!customOptions.facilitatorMode || userRole == 'facilitator') &&
               !customOptions.hideNavigationButtons
             "
@@ -166,98 +422,35 @@
                 Shuffle near end
               </b-button>
             </div>
-          </div> -->
+          </div>
+          <hr class="mb-4" />
+          <!-- copy url button -->
+          <div class="row menu-row">
+            <b-button
+              class="border-0 btn-lg btn-block"
+              v-on:click="
+                copyLinkToClipboard();
+                closeMenu();
+              "
+              @click="$bvToast.show('copyToast')"
+            >
+              <b-icon-link45deg></b-icon-link45deg> Copy URL
+            </b-button>
+          </div>
+          <!-- restart button -->
+          <div class="row menu-row">
+            <b-button
+              v-b-modal.reshuffleConfirm
+              v-on:click="closeMenu()"
+              class="control-button-restart btn-lg btn-block"
+              variant="outline-dark"
+              :disabled="roomInfo.xCardIsActive"
+              v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
+              color="rgb(187, 138, 200)"
+              >Restart</b-button
+            >
+          </div>
         </b-container>
-        <div
-          class=""
-          v-if="customOptions.modalOneLabel || customOptions.modalTwoLabel"
-        >
-          <hr class="mb-4" />
-          <b-button
-            v-b-modal.modalOne
-            v-on:click="closeMenu()"
-            variant="outline-dark"
-            class="btn-block btn-lg"
-            v-if="customOptions.modalOneLabel"
-          >
-            {{ customOptions.modalOneLabel }}
-          </b-button>
-          <b-button
-            v-b-modal.modalTwo
-            v-on:click="closeMenu()"
-            variant="outline-dark"
-            class="btn-block btn-lg"
-            v-if="customOptions.modalTwoLabel"
-            >{{ customOptions.modalTwoLabel }}</b-button
-          >
-          <hr class="mb-4" />
-          <h6
-            class="text-center"
-            v-if="
-              customOptions.popCardMenuHeader &&
-              (!customOptions.facilitatorMode || userRole == 'facilitator')
-            "
-          >
-            {{ customOptions.popCardsMenuHeader }}
-          </h6>
-          <b-button
-            v-on:click="
-              popCardOne();
-              closeMenu();
-            "
-            variant="outline-dark"
-            class="btn-block btn-lg"
-            v-if="
-              customOptions.popCardOneLabel &&
-              (!customOptions.facilitatorMode || userRole == 'facilitator')
-            "
-            :disabled="
-              roomInfo.xCardIsActive ||
-              roomInfo.popCardTwoIsActive ||
-              roomInfo.popCardThreeIsActive
-            "
-          >
-            {{ customOptions.popCardOneLabel }}
-          </b-button>
-          <b-button
-            v-on:click="
-              popCardTwo();
-              closeMenu();
-            "
-            variant="outline-dark"
-            class="btn-block btn-lg"
-            v-if="
-              customOptions.popCardTwoLabel &&
-              (!customOptions.facilitatorMode || userRole == 'facilitator')
-            "
-            :disabled="
-              roomInfo.xCardIsActive ||
-              roomInfo.popCardOneIsActive ||
-              roomInfo.popCardThreeIsActive
-            "
-          >
-            {{ customOptions.popCardTwoLabel }}
-          </b-button>
-          <b-button
-            v-on:click="
-              popCardThree();
-              closeMenu();
-            "
-            variant="outline-dark"
-            class="btn-block btn-lg"
-            v-if="
-              customOptions.popCardThreeLabel &&
-              (!customOptions.facilitatorMode || userRole == 'facilitator')
-            "
-            :disabled="
-              roomInfo.xCardIsActive ||
-              roomInfo.popCardOneIsActive ||
-              roomInfo.popCardTwoIsActive
-            "
-          >
-            {{ customOptions.popCardThreeLabel }}
-          </b-button>
-        </div>
         <div class="row menu-row mt-4">
           <a href="https://storysynth.org" target="_blank"
             >Powered by Story Synth</a

@@ -8,7 +8,20 @@ import Vue from 'vue'
 import VueMeta from 'vue-meta'
 Vue.use(VueMeta);
 
-import { BootstrapVue, BIcon, BIconPencil, BIconTrash, BIconCheck2, BIconList, BIconLink45deg, BIconArrowClockwise, BIconArrowsMove, BIconChevronLeft, BIconCardHeading, BIconChevronRight} from 'bootstrap-vue'
+import {
+  BootstrapVue,
+  BIcon,
+  BIconPencil,
+  BIconTrash,
+  BIconCheck2,
+  BIconList,
+  BIconLink45deg,
+  BIconArrowClockwise,
+  BIconArrowsMove,
+  BIconChevronLeft,
+  BIconCardHeading,
+  BIconChevronRight
+} from 'bootstrap-vue'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -40,7 +53,9 @@ import App from './App.vue'
 
 import VueGtag from "vue-gtag";
 Vue.use(VueGtag, {
-  config: { id: "G-B8L2T2PSP7" }
+  config: {
+    id: "G-B8L2T2PSP7"
+  }
 });
 
 import VueMixpanel from 'vue-mixpanel'
@@ -52,11 +67,22 @@ Vue.use(VueMixpanel, {
 import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
-const routes = [
-  { path: '/', component: App },
-  { path: '/:gameType/:gSheetID/', component: App},
-  { path: '/:gameType/:gSheetID/:roomID', component: App },
-  { path: '/:gameType/:gSheetID/:roomID/:userRole', component: App}
+const routes = [{
+    path: '/',
+    component: App
+  },
+  {
+    path: '/:gameType/:gSheetID/',
+    component: App
+  },
+  {
+    path: '/:gameType/:gSheetID/:roomID',
+    component: App
+  },
+  {
+    path: '/:gameType/:gSheetID/:roomID/:userRole',
+    component: App
+  }
 ]
 
 
@@ -85,23 +111,27 @@ router.beforeEach((to, from, next) => {
     next(path);
     return;
   }
-  
+
   next();
 })
 
-import { firestorePlugin } from 'vuefire'
-import { rtdbPlugin } from 'vuefire'
+import {
+  firestorePlugin
+} from 'vuefire'
+import {
+  rtdbPlugin
+} from 'vuefire'
 
 
 Vue.use(firestorePlugin)
-Vue.use (rtdbPlugin)
+Vue.use(rtdbPlugin)
 
 var vm = new Vue({
   el: '#app',
   router,
   render: h => h(App),
   //mounted: () => document.dispatchEvent(new Event("x-app-rendered")),
-  data () {
+  data() {
     return {
       gSheet: null
     }

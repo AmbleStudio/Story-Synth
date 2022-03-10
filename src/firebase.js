@@ -1,6 +1,21 @@
-import { initializeApp } from 'firebase/app';
+import firebase from "firebase/compat/app";
+//SD: import * as firebaseui from "firebaseui";
+//SD: import "firebase/auth";
+import "firebase/database";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc
+} from 'firebase/firestore/lite';
 
-const app = initializeApp({
+import {
+  getDatabase
+} from "firebase/database";
+
+//v7: import { initializeApp } from 'firebase/app';
+
+const app = firebase.initializeApp({
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
   authDomain: "",
   databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
@@ -9,8 +24,10 @@ const app = initializeApp({
   messagingSenderId: ""
 });
 
-export const db = app.firestore();
+export const db = getFirestore(app);
 // db.settings({ experimentalForceLongPolling: true });
-export const roomsCollection = db.collection('rooms');
+// v7: export const roomsCollection = db.collection('rooms');
 
-export const rtdb = app.database();
+export const roomsCollection = collection(db, 'rooms');
+
+export const rtdb = getDatabase(app);

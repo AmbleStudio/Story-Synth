@@ -1,6 +1,10 @@
 import {
   initializeApp
 } from 'firebase/app';
+<<<<<<< Updated upstream
+=======
+import "firebase/auth";
+>>>>>>> Stashed changes
 
 const app = initializeApp({
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,

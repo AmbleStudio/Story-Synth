@@ -273,7 +273,7 @@
 </template>
 
 <script>
-import { roomsCollection } from '../../firebase';
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from 'axios'
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import RoomLink from '../layout/RoomLink.vue';
@@ -314,19 +314,14 @@ export default {
   mounted(){
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind('roomInfo', roomsCollection.doc(this.roomID))
-      .then(() => {
-        this.firebaseReady = true
-      })
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
+        this.firebaseReady = true;
+        this.roomInfo = room;
         if (!this.roomInfo){
           console.log("new room!")
 
-          roomsCollection.doc(this.roomID).set({currentCardIndex:0,extensionData: this.tempExtensionData,xCardIsActive: false, cardSequence:[0,1,2]})
+          setRoom(this.roomID,{currentCardIndex:0,extensionData: this.tempExtensionData,xCardIsActive: false, cardSequence:[0,1,2]})
         }
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
       })
   },
   methods: {
@@ -342,13 +337,13 @@ export default {
       });
     },
     previousCard(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.roomInfo.currentCardIndex -= 1
       })
       this.updateRoundInfo();
     },
     nextCard(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.roomInfo.currentCardIndex += 1
       })
       this.updateRoundInfo();
@@ -398,14 +393,14 @@ export default {
       }
       */
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         roundInfo: newRoundInfo,
         roundProgress: newRoundProgress,
         roundTitle: newRoundTitle
       })
     },
     xCard(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         xCardIsActive: !this.roomInfo.xCardIsActive
       })
     },
@@ -419,7 +414,7 @@ export default {
       }
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },

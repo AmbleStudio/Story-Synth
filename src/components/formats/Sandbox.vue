@@ -16,9 +16,9 @@
 </template>
 
 <script>
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import ExtensionManager from '../extensions/ExtensionManager.vue'
 import axios from 'axios'
-import { roomsCollection } from '../../firebase';
 
 export default {
   name: 'app-sandbox',
@@ -97,24 +97,19 @@ export default {
   mounted(){
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind('roomInfo', roomsCollection.doc(this.roomID))
-      .then(() => {
-        this.firebaseReady = true
-      })
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
+        this.firebaseReady = true;
+        this.roomInfo = room;
         if (!this.roomInfo){
           console.log("new room!")
 
-          roomsCollection.doc(this.roomID).set({extensionData: this.tempExtensionData,currentCardIndex:0, xCardIsActive: false, cardSequence:[0,1,2], currentPhase: 0})
+          setRoom(this.roomID,{extensionData: this.tempExtensionData,currentCardIndex:0, xCardIsActive: false, cardSequence:[0,1,2], currentPhase: 0})
         }
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
       })
   },
   methods: {
     syncExtension(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData
       })
     },
@@ -157,7 +152,7 @@ export default {
 
         if(this.firebaseReady && Object.keys(this.tempExtensionData).length > 1) {
           
-          roomsCollection.doc(this.roomID).update({extensionData: this.tempExtensionData})
+          updateRoom(this.roomID, {extensionData: this.tempExtensionData})
         }
 
         if (this.customOptions.wallet) {

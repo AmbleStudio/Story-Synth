@@ -577,7 +577,7 @@
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from "axios";
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import RoomLink from '../layout/RoomLink.vue';
@@ -670,17 +670,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection
-            .doc(this.roomID)
-            .set({
+          setRoom(this.roomID,{
               extensionData: this.tempExtensionData,
               currentCardIndex: 0,
               xCardIsActive: false,
@@ -692,9 +688,6 @@ export default {
           }
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   methods: {
     closeMenu(){
@@ -709,7 +702,7 @@ export default {
       });
     },
     previousCard() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: (this.roomInfo.currentCardIndex -= 1),
       });
     },
@@ -717,7 +710,7 @@ export default {
       if (this.roomInfo.cardSequence.length == 1) {
         this.shuffleAndResetGame();
       }
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: (this.roomInfo.currentCardIndex += 1),
       });
     },
@@ -726,12 +719,12 @@ export default {
         this.shuffleAndResetGame();
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.roomInfo.locationOfLastCard,
       });
     },
     xCard() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         xCardIsActive: !this.roomInfo.xCardIsActive,
       });
     },
@@ -752,7 +745,7 @@ export default {
         }
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: newCardIndex,
       });
     },
@@ -785,7 +778,7 @@ export default {
       );
       console.log(this.roomInfo.cardSequence);
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         cardSequence: this.roomInfo.cardSequence,
         locationOfLastCard: tempNewLastCardLocation,
       });
@@ -794,7 +787,7 @@ export default {
       console.log("shuffling");
 
       // reset card count
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: 0,
         locationOfLastCard: 0,
       });
@@ -824,13 +817,13 @@ export default {
       }
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         cardSequence: newCardSequence,
         locationOfLastCard: newCardSequence.length - 1,
       });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -899,9 +892,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {

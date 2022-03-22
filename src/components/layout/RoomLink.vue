@@ -35,9 +35,7 @@
 </template>
 
 <script>
-import { rtdb } from "../../firebase";
-var rooms = rtdb.ref("rooms");
-var amOnline = rtdb.ref(".info/connected");
+import {notifyMyOnlineStatus, onRoomInfoUpdate} from "../../firebase/models/players_in_room.js";
 
 export default {
   name: "app-roomLink",
@@ -55,27 +53,15 @@ export default {
       context: null,
     };
   },
-  firebase: {
-    roomInfo: rtdb.ref("documents"),
-  },
   mounted() {
     if (this.routeRoomID) {
-      var tempUserRef =
-        "rooms/" +
-        this.routeRoomID +
-        "/" +
-        Math.trunc(Math.random() * 100000).toString();
+      
+      notifyMyOnlineStatus(this.routeRoomID);
 
-      let userRef = rtdb.ref(tempUserRef);
-
-      amOnline.on("value", function (snapshot) {
-        if (snapshot.val()) {
-          userRef.onDisconnect().remove();
-          userRef.set(true);
-        }
-      });
-
-      this.$rtdbBind("roomInfo", rooms.child(this.routeRoomID)).then(() => {});
+      onRoomInfoUpdate(this.routeRoomID, (roomInfo) => {
+        console.log(roomInfo)
+        this.roomInfo = roomInfo
+      })
 
       this.$gtag.event("reachedGameSession", {
         sheetID: this.$route.gSheetID,
@@ -88,24 +74,12 @@ export default {
   watch: {
     $route() {
       if (this.routeRoomID) {
-        var tempUserRef =
-          "rooms/" +
-          this.routeRoomID +
-          "/" +
-          Math.trunc(Math.random() * 1000).toString();
+        notifyMyOnlineStatus(this.routeRoomID);
 
-        var userRef = rtdb.ref(tempUserRef);
-
-        amOnline.on("value", function (snapshot) {
-          if (snapshot.val()) {
-            userRef.onDisconnect().remove();
-            userRef.set(true);
-          }
-        });
-
-        this.$rtdbBind("roomInfo", rooms.child(this.routeRoomID)).then(
-          () => {}
-        );
+        onRoomInfoUpdate(this.routeRoomID, (roomInfo) => {
+            console.log({roomInfo})
+            this.roomInfo = roomInfo
+            });
 
         this.$gtag.event("reachedGameSession", {
           sheetID: this.$route.gSheetID,

@@ -360,7 +360,11 @@
 </template>
 
 <script>
-import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
+import {
+  onRoomUpdate,
+  setRoom,
+  updateRoom,
+} from "../../firebase/models/rooms.js";
 import axios from "axios";
 import GraphemeSplitter from "grapheme-splitter";
 import RoomLink from "../layout/RoomLink.vue";
@@ -432,28 +436,28 @@ export default {
     this.fetchAndCleanSheetData(this.gSheetID);
 
     onRoomUpdate(this.roomID, (room) => {
-        this.firebaseReady = true;
-        this.roomInfo = room;
-        if (!this.roomInfo) {
-          console.log("new room! dataReady", this.dataReady);
+      this.firebaseReady = true;
+      this.roomInfo = room;
+      if (!this.roomInfo) {
+        console.log("new room! dataReady", this.dataReady);
 
-          setRoom(this.roomID,{
-            hexesToAnimate: [],
-            extensionData: this.tempExtensionData,
-            currentLocation: 9,
-            hexArray: [
-              0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-            ],
-            hexesVisible: [],
-            hexesMidreveal: [],
-            playRandomizerAnimation: false,
-          });
+        setRoom(this.roomID, {
+          hexesToAnimate: [],
+          extensionData: this.tempExtensionData,
+          currentLocation: 9,
+          hexArray: [
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+          ],
+          hexesVisible: [],
+          hexesMidreveal: [],
+          playRandomizerAnimation: false,
+        });
 
-          if (this.dataReady) {
-            this.regenerateHexes();
-          }
+        if (this.dataReady) {
+          this.regenerateHexes();
         }
-      })
+      }
+    });
   },
   watch: {
     roomInfo: function (val) {
@@ -627,13 +631,8 @@ export default {
       }
 
       // check if moving to self
-<<<<<<< HEAD
       if (this.roomInfo.currentLocation == hexID) {
-        roomsCollection.doc(this.roomID).update({
-=======
-      if (this.roomInfo.currentLocation == hexID){
         updateRoom(this.roomID, {
->>>>>>> 5018f2f639551642e1a44b8fe3d4a1d5c3c65e56
           previousLocation: this.roomInfo.currentLocation,
           currentLocation: hexID,
           playRandomizerAnimation: playRandomizerAnimation,
@@ -643,21 +642,13 @@ export default {
           hexesMidreveal: hexesMidreveal,
           tempSameHex: true,
         });
-<<<<<<< HEAD
         setTimeout(
           () =>
-            roomsCollection.doc(this.roomID).update({
+            updateRoom(this.roomID, {
               tempSameHex: false,
             }),
           200
         );
-=======
-        setTimeout(() =>
-          updateRoom(this.roomID, {
-            tempSameHex: false,
-          }), 200
-        )
->>>>>>> 5018f2f639551642e1a44b8fe3d4a1d5c3c65e56
       } else {
         updateRoom(this.roomID, {
           previousLocation: this.roomInfo.currentLocation,

@@ -981,7 +981,7 @@
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from "axios";
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import RoomLink from "../layout/RoomLink.vue";
@@ -1080,15 +1080,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection.doc(this.roomID).set({
+          setRoom(this.roomID,{
             extensionData: this.tempExtensionData,
             currentCardIndex: 0,
             // sets a default status for these attributes when room is created ?
@@ -1111,19 +1109,16 @@ export default {
           this.firebaseCacheError = false;
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   methods: {
     goToCard(index) {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: index,
         showCardBack: false,
       });
     },
     previousCard() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: (this.roomInfo.currentCardIndex -= 1),
         showCardBack: false,
       });
@@ -1148,7 +1143,7 @@ export default {
       }
 
       if (destinationCard) {
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           currentCardIndex: destinationCard,
           showCardBack: false,
         });
@@ -1163,7 +1158,7 @@ export default {
       }
 
       if (destinationCard) {
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           currentCardIndex: parseInt(destinationCard),
           showCardBack: false,
         });
@@ -1183,7 +1178,7 @@ export default {
         );
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: tempLastCardLocation,
         locationOfLastCard: tempLastCardLocation,
         showCardBack: false,
@@ -1191,22 +1186,22 @@ export default {
     },
     // toggles xCardIsActive property when called...???
     xCard() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         xCardIsActive: !this.roomInfo.xCardIsActive,
       });
     },
     popCardOne() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         popCardOneIsActive: !this.roomInfo.popCardOneIsActive,
       });
     },
     popCardTwo() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         popCardTwoIsActive: !this.roomInfo.popCardTwoIsActive,
       });
     },
     popCardThree() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         popCardThreeIsActive: !this.roomInfo.popCardThreeIsActive,
       });
     },
@@ -1242,7 +1237,7 @@ export default {
         }
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: newCardIndex,
         showCardBack: false,
       });
@@ -1281,7 +1276,7 @@ export default {
       );
       console.log(this.roomInfo.cardSequence);
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         cardSequence: this.roomInfo.cardSequence,
         locationOfLastCard: tempNewLastCardLocation,
         showCardBack: false,
@@ -1293,7 +1288,7 @@ export default {
         tempShowCardBack = false;
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         showCardBack: tempShowCardBack,
       });
     },
@@ -1304,7 +1299,7 @@ export default {
       this.$bvModal.hide("menuModal");
 
       // reset card count
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: 0,
         locationOfLastCard: 0,
       });
@@ -1356,9 +1351,7 @@ export default {
       }
 
       // sync the shuffled array
-      roomsCollection
-        .doc(this.roomID)
-        .update({
+      updateRoom(this.roomID, {
           cardSequence: newCardSequence,
           locationOfLastCard: newCardSequence.length - 1,
         })
@@ -1367,7 +1360,7 @@ export default {
         });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -1456,9 +1449,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {

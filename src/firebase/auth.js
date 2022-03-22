@@ -6,6 +6,6 @@ const auth = firebase.auth();
 
 export default auth;
 
-export function annonymousSignIn() {
+export function anonymousSignIn() {
   return signInAnonymously(auth);
 }

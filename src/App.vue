@@ -141,7 +141,7 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-import {annonymousSignIn } from "./firebase/auth.js"
+import {anonymousSignIn } from "./firebase/auth.js"
 
 export default {
   name: "app",
@@ -225,7 +225,7 @@ export default {
     };
   },
   mounted() {
-    annonymousSignIn()
+    anonymousSignIn()
       .then(() => {
         console.log('anon auth')
       })

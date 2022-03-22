@@ -360,7 +360,7 @@
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from "axios";
 import GraphemeSplitter from "grapheme-splitter";
 import RoomLink from "../layout/RoomLink.vue";
@@ -431,15 +431,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room! dataReady", this.dataReady);
 
-          roomsCollection.doc(this.roomID).set({
+          setRoom(this.roomID,{
             hexesToAnimate: [],
             extensionData: this.tempExtensionData,
             currentLocation: 9,
@@ -456,9 +454,6 @@ export default {
           }
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   watch: {
     roomInfo: function (val) {
@@ -632,8 +627,13 @@ export default {
       }
 
       // check if moving to self
+<<<<<<< HEAD
       if (this.roomInfo.currentLocation == hexID) {
         roomsCollection.doc(this.roomID).update({
+=======
+      if (this.roomInfo.currentLocation == hexID){
+        updateRoom(this.roomID, {
+>>>>>>> 5018f2f639551642e1a44b8fe3d4a1d5c3c65e56
           previousLocation: this.roomInfo.currentLocation,
           currentLocation: hexID,
           playRandomizerAnimation: playRandomizerAnimation,
@@ -643,6 +643,7 @@ export default {
           hexesMidreveal: hexesMidreveal,
           tempSameHex: true,
         });
+<<<<<<< HEAD
         setTimeout(
           () =>
             roomsCollection.doc(this.roomID).update({
@@ -650,8 +651,15 @@ export default {
             }),
           200
         );
+=======
+        setTimeout(() =>
+          updateRoom(this.roomID, {
+            tempSameHex: false,
+          }), 200
+        )
+>>>>>>> 5018f2f639551642e1a44b8fe3d4a1d5c3c65e56
       } else {
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           previousLocation: this.roomInfo.currentLocation,
           playRandomizerAnimation: playRandomizerAnimation,
           playResetAnimation: false,
@@ -739,7 +747,7 @@ export default {
         hexIndexList.push(newHexArray[hexIndex].hexID);
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         previousLocation: null,
         playRandomizerAnimation: false,
         playResetAnimation: true,
@@ -749,7 +757,7 @@ export default {
       });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -893,9 +901,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {

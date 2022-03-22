@@ -341,7 +341,7 @@
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import axios from "axios";
 import RoomLink from '../layout/RoomLink.vue';
@@ -377,15 +377,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection.doc(this.roomID).set({
+          setRoom(this.roomID,{
             extensionData: this.tempExtensionData,
             currentGeneratorSelection: [0, 1, 2],
           });
@@ -395,9 +393,6 @@ export default {
           }
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   methods: {
     closeMenu(){
@@ -423,7 +418,7 @@ export default {
       console.log("new generator picks:", newGeneratorSelection);
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
@@ -436,7 +431,7 @@ export default {
 
       if (newGeneratorSelection[index - 1] == newValueIndex){
         newGeneratorSelection[index - 1] = ''
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           currentGeneratorSelection: newGeneratorSelection,
         });
       }      
@@ -444,7 +439,7 @@ export default {
       newGeneratorSelection[index - 1] = newValueIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
@@ -454,12 +449,12 @@ export default {
       newGeneratorSelection[index - 1] = optionIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -615,9 +610,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {

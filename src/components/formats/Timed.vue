@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { roomsCollection } from '../../firebase';
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from 'axios'
 import RoomLink from '../layout/RoomLink.vue';
 
@@ -125,17 +125,13 @@ export default {
   },
   mounted(){
     this.fetchAndCleanSheetData(this.gSheetID);
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection
-            .doc(this.roomID)
-            .set({
+          setRoom(this.roomID,{
               timeBegan: null
             , timeStopped: null
             , stoppedDuration: 0
@@ -155,49 +151,44 @@ export default {
 
     this.sync();
   },
-  firestore() {
-    return {
-      roomInfo: roomsCollection.doc(this.roomID)//.set(this.roomInfo, {merge:true})
-    }
-  },
   methods: {
     start() {
       if(this.roomInfo.running) return;
 
       if (this.roomInfo.timeBegan === null) {
         this.reset();
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           timeBegan: new Date()
         })
       }
 
       if (this.roomInfo.timeStopped !== null) {
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           stoppedDuration: this.roomInfo.stoppedDuration + (new Date() - this.roomInfo.timeStopped.toDate())
         })
       }
 
       this.started = setInterval(this.clockRunning, 100);
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         running: true
       })
 
     },
     stop() {
       if (this.roomInfo.timeBegan !== null){
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           running: false
         })
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           timeStopped: new Date()
         })
       }
     },
     reset() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         running: false
       })
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         stoppedDuration: 0,
         timeBegan: null,
         timeStopped: null

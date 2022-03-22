@@ -325,7 +325,7 @@
 </template>
 
 <script>
-import { roomsCollection } from '../../firebase';
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from 'axios'
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import RoomLink from '../layout/RoomLink.vue';
@@ -369,21 +369,16 @@ export default {
   mounted(){
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind('roomInfo', roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo){
           console.log("new room!")
 
-          roomsCollection.doc(this.roomID).set({currentCardIndex:0, xCardIsActive: false,extensionData: this.tempExtensionData, cardSequence:[0,1,2], currentPhase: 0, skipToEnding: false, lastSeenRound: 0, lastSeenPhase: 0})
+          setRoom(this.roomID,{currentCardIndex:0, xCardIsActive: false,extensionData: this.tempExtensionData, cardSequence:[0,1,2], currentPhase: 0, skipToEnding: false, lastSeenRound: 0, lastSeenPhase: 0})
 
           if(this.dataReady){this.shuffle();}
         }
-      })
-      .catch((error) => {
-        console.log('error in loading: ', error)
       })
   },
   methods: {
@@ -417,7 +412,7 @@ export default {
       let lastSeenRound = (this.roomInfo.currentCardIndex > this.endingIndex) ? this.roomInfo.lastSeenRound : this.roomInfo.currentCardIndex
       let lastSeenPhase = (this.roomInfo.currentCardIndex > this.endingIndex) ? this.roomInfo.lastSeenPhase : this.roomInfo.currentPhase
       
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.roomInfo.currentCardIndex,
         lastSeenRound: lastSeenRound,
         currentPhase: this.roomInfo.currentPhase,
@@ -442,7 +437,7 @@ export default {
       let lastSeenRound = (this.roomInfo.currentCardIndex > this.endingIndex) ? this.roomInfo.lastSeenRound : this.roomInfo.currentCardIndex
       let lastSeenPhase = (this.roomInfo.currentCardIndex > this.endingIndex) ? this.roomInfo.lastSeenPhase : this.roomInfo.currentPhase
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.roomInfo.currentCardIndex,
         lastSeenRound: lastSeenRound,
         currentPhase: this.roomInfo.currentPhase,
@@ -450,7 +445,7 @@ export default {
       })
     },
     skipInstructions(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: this.firstNonInstruction,
         lastSeenRound: this.firstNonInstruction,
         currentPhase: 0,
@@ -462,7 +457,7 @@ export default {
         this.shuffle();
       }
 
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         lastSeenRound: this.roomInfo.currentCardIndex,
         lastSeenPhase: this.roomInfo.currentPhase,
         currentCardIndex: this.endingIndex,
@@ -470,7 +465,7 @@ export default {
       })
     },
     xCard(){
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         xCardIsActive: !this.roomInfo.xCardIsActive
       })
     },
@@ -478,7 +473,7 @@ export default {
       this.$bvModal.hide('reshuffleConfirm')
 
       // reset card count
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentCardIndex: 0,
         currentPhase: 0
       })
@@ -530,13 +525,13 @@ export default {
 
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         cardSequence: initialCardSequence.concat(shuffledCards).concat(finalCardSequence)
       })
 
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },

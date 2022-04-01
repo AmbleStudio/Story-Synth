@@ -5,14 +5,12 @@ import auth from "./auth";
 
 export const authUiConfig = {
   signInSuccessUrl: "/",
-  signInOptions: [
-    {
-      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      customParameters: {
-        prompt: "select_account"
-      }
+  signInOptions: [{
+    provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    customParameters: {
+      prompt: "select_account"
     }
-  ]
+  }]
 };
 
 export default new firebaseui.auth.AuthUI(auth);

@@ -116,11 +116,16 @@
         "
       ></app-footer>
     </div>
+    <div class="login">
+      <app-auth></app-auth>
+    </div>
   </div>
 </template>
 
 <script>
 // Remove for published version any components you aren't using
+import Auth from "./components/auth/Auth.vue";
+
 import Header from "./components/layout/Header.vue";
 import Footer from "./components/layout/Footer.vue";
 
@@ -146,6 +151,8 @@ export default {
   name: "app",
   components: {
     // Remove unused components from the published version
+    "app-auth": Auth,
+
     "app-header": Header,
     "app-footer": Footer,
 

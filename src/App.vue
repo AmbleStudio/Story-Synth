@@ -252,6 +252,9 @@ html {
 .btn-outline-primary:not(:hover) {
   background-color: white;
 }
+.btn-outline-secondary:not(:hover) {
+  background-color: white;
+}
 
 .menu-bar .btn-outline-dark:not(:hover),
 .menu-bar .btn-outline-primary:not(:hover) {

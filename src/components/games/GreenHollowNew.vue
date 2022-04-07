@@ -7,7 +7,7 @@
     <div class="menu-bar mb-4 d-flex align-items-center">
       <!--The "Menu" button that opens the menu-->
       <button
-        class="btn btn-outline-dark mr-auto border-0"
+        class="btn btn-outline-secondary mr-auto border-0"
         v-b-modal.menuModal
         v-bind:style="{ color: customOptions.menuColor }"
       >
@@ -31,7 +31,7 @@
           <!-- X-Card section -->
           <div class="row menu-row">
             <b-button
-              variant="outline-dark"
+              variant="outline-secondary"
               class="control-button-safety-card btn-lg btn-block"
               v-on:click="
                 xCard();
@@ -64,7 +64,7 @@
             <b-button
               v-b-modal.modalOne
               v-on:click="closeMenu()"
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.modalOneLabel &&
@@ -84,7 +84,7 @@
             <b-button
               v-b-modal.modalTwo
               v-on:click="closeMenu()"
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.modalTwoLabel &&
@@ -128,7 +128,7 @@
                 goToChapter(customOptions.chapterOneFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterOneFirstCard &&
@@ -157,7 +157,7 @@
                 goToChapter(customOptions.chapterTwoFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterTwoFirstCard &&
@@ -186,7 +186,7 @@
                 goToChapter(customOptions.chapterThreeFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterThreeFirstCard &&
@@ -215,7 +215,7 @@
                 goToChapter(customOptions.chapterFourFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterFourFirstCard &&
@@ -244,7 +244,7 @@
                 goToChapter(customOptions.chapterFiveFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterFiveFirstCard &&
@@ -273,7 +273,7 @@
                 goToChapter(customOptions.chapterSixFirstCard);
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.chapterSixFirstCard &&
@@ -322,7 +322,7 @@
                 popCardOne();
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.popCardOneLabel &&
@@ -350,7 +350,7 @@
                 popCardTwo();
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.popCardTwoLabel &&
@@ -378,7 +378,7 @@
                 popCardThree();
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="btn-block btn-lg"
               v-if="
                 customOptions.popCardThreeLabel &&
@@ -407,7 +407,7 @@
                 nextDeck();
                 closeMenu();
               "
-              variant="outline-dark"
+              variant="outline-secondary"
               class="control-button-next-deck btn-lg btn-block"
               v-if="
                 this.customOptions.showNextDeckButton &&
@@ -431,7 +431,7 @@
             class="row menu-row"
           >
             <b-button
-              variant="outline-dark"
+              variant="outline-secondary"
               class="control-button-last-deck btn-lg btn-block"
               v-on:click="
                 lastCard();
@@ -530,7 +530,7 @@
               v-b-modal.reshuffleConfirm
               v-on:click="closeMenu()"
               class="control-button-restart btn-lg btn-block"
-              variant="outline-dark"
+              variant="outline-secondary"
               :disabled="roomInfo.xCardIsActive"
               v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
               color="rgb(187, 138, 200)"
@@ -588,7 +588,7 @@
           >
             <button
               class="
-                btn btn-outline-dark btn-fab btn-fab-left
+                btn btn-outline-secondary btn-fab btn-fab-left
                 control-button-previous-card
                 shadow
               "
@@ -609,7 +609,7 @@
             </button>
             <button
               class="
-                btn btn-outline-dark btn-fab btn-fab-right
+                btn btn-outline-secondary btn-fab btn-fab-right
                 control-button-next-card
                 shadow
               "
@@ -785,7 +785,7 @@
                   "
                 ></p>
                 <button
-                  class="btn btn-outline-dark"
+                  class="btn btn-outline-secondary"
                   v-on:click="flipCard()"
                   v-if="
                     gSheet[roomInfo.cardSequence[roomInfo.currentCardIndex]]
@@ -819,7 +819,7 @@
                   "
                 ></div>
                 <button
-                  class="btn btn-outline-dark"
+                  class="btn btn-outline-secondary"
                   v-on:click="flipCard()"
                   v-if="
                     gSheet[roomInfo.cardSequence[roomInfo.currentCardIndex]]
@@ -885,7 +885,7 @@
               ></div>
             </div>
             <!--'Continue' button is always displayed in X card -->
-            <button class="btn btn-outline-dark mt-5" v-on:click="xCard()">
+            <button class="btn btn-outline-secondary mt-5" v-on:click="xCard()">
               Continue
             </button>
             <!-- more default text -->
@@ -918,7 +918,10 @@
               ></div>
             </div>
             <!--'Done' button is always displayed in Pop card -->
-            <button class="btn btn-outline-dark mt-5" v-on:click="popCardOne()">
+            <button
+              class="btn btn-outline-secondary mt-5"
+              v-on:click="popCardOne()"
+            >
               Done
             </button>
           </div>
@@ -945,7 +948,10 @@
               ></div>
             </div>
             <!--'Done' button is always displayed in Pop card -->
-            <button class="btn btn-outline-dark mt-5" v-on:click="popCardTwo()">
+            <button
+              class="btn btn-outline-secondary mt-5"
+              v-on:click="popCardTwo()"
+            >
               Done
             </button>
           </div>
@@ -973,7 +979,7 @@
             </div>
             <!--'Done' button is always displayed in Pop card -->
             <button
-              class="btn btn-outline-dark mt-5"
+              class="btn btn-outline-secondary mt-5"
               v-on:click="popCardThree()"
             >
               Done
@@ -1003,7 +1009,7 @@
               v-if="customOptions.showSafetyButtonOnPage"
             >
               <b-button
-                variant="outline-dark"
+                variant="outline-secondary"
                 v-on:click="xCard()"
                 v-html="
                   customOptions.safetyCardButton
@@ -1050,7 +1056,7 @@
               <!-- Show modal one button -->
               <b-button
                 v-b-modal.modalOne
-                variant="outline-dark"
+                variant="outline-secondary"
                 v-if="
                   customOptions.modalOneLabel &&
                   roomInfo.currentCardIndex >=
@@ -1073,7 +1079,7 @@
               <!-- Show modal two button -->
               <b-button
                 v-b-modal.modalTwo
-                variant="outline-dark"
+                variant="outline-secondary"
                 v-if="
                   customOptions.modalTwoLabel &&
                   roomInfo.currentCardIndex >=
@@ -1130,7 +1136,7 @@
                 aria-label="Card Controls"
               >
                 <b-button
-                  variant="outline-dark"
+                  variant="outline-secondary"
                   v-if="customOptions.popCardOneLabel"
                   :disabled="
                     roomInfo.xCardIsActive ||
@@ -1146,7 +1152,7 @@
                   >Popcard One</b-button
                 >
                 <b-button
-                  variant="outline-dark"
+                  variant="outline-secondary"
                   v-if="customOptions.popCardTwoLabel"
                   :disabled="
                     roomInfo.xCardIsActive ||
@@ -1162,7 +1168,7 @@
                   >Popcard Two</b-button
                 >
                 <b-button
-                  variant="outline-dark"
+                  variant="outline-secondary"
                   v-if="customOptions.popCardThreeLabel"
                   :disabled="
                     roomInfo.xCardIsActive ||
@@ -1191,7 +1197,7 @@
               <div class="col-sm">
                 <b-button-group aria-role="Deck control" class="d-flex w-100">
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1213,7 +1219,7 @@
                     >Chapter One</b-button
                   >
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1235,7 +1241,7 @@
                     >Chapter Two</b-button
                   >
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1259,7 +1265,7 @@
                     >Chapter Three</b-button
                   >
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1281,7 +1287,7 @@
                     >Chapter Four</b-button
                   >
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1303,7 +1309,7 @@
                     >Chapter Five</b-button
                   >
                   <b-button
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="
                       roomInfo.xCardIsActive ||
                       roomInfo.popCardOneIsActive ||
@@ -1341,7 +1347,7 @@
                   <!-- Restart button -->
                   <b-button
                     v-b-modal.reshuffleConfirm
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     :disabled="roomInfo.xCardIsActive"
                     v-if="
                       !customOptions.facilitatorMode ||
@@ -1353,7 +1359,7 @@
                   <!-- Next deck button -->
                   <b-button
                     v-b-modal.modalNextDeckConfirm
-                    variant="outline-dark"
+                    variant="outline-secondary"
                     v-if="
                       this.customOptions.showNextDeckButton &&
                       (!customOptions.facilitatorMode ||

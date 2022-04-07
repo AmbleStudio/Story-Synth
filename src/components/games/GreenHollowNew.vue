@@ -972,6 +972,7 @@
                 customOptions.showModalsOnPage
               "
             >
+              <!-- Show modal one button -->
               <b-button
                 v-b-modal.modalOne
                 variant="outline-dark"
@@ -982,7 +983,7 @@
                 "
                 >{{ customOptions.modalOneLabel }}</b-button
               >
-
+              <!-- Display modal one content -->
               <b-modal
                 id="modalOne"
                 v-bind:title="customOptions.modalOneLabel"
@@ -994,6 +995,7 @@
                 ></div>
               </b-modal>
 
+              <!-- Show modal two button -->
               <b-button
                 v-b-modal.modalTwo
                 variant="outline-dark"
@@ -1004,7 +1006,7 @@
                 "
                 >{{ customOptions.modalTwoLabel }}</b-button
               >
-
+              <!-- Display modal two content -->
               <b-modal
                 id="modalTwo"
                 v-bind:title="customOptions.modalTwoLabel"
@@ -1301,27 +1303,6 @@
         </div>
 
         <!--Modals handler-->
-        <b-modal
-          id="modalOne"
-          v-bind:title="customOptions.modalOneLabel"
-          hide-footer
-        >
-          <div
-            class="d-block text-left"
-            v-html="customOptions.modalOneText"
-          ></div>
-        </b-modal>
-
-        <b-modal
-          id="modalTwo"
-          v-bind:title="customOptions.modalTwoLabel"
-          hide-footer
-        >
-          <div
-            class="d-block text-left"
-            v-html="customOptions.modalTwoText"
-          ></div>
-        </b-modal>
 
         <b-modal id="modalNextDeckConfirm" title="Advance?" hide-footer>
           <p></p>
@@ -1356,7 +1337,11 @@
 </template>
 
 <script>
-import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
+import {
+  onRoomUpdate,
+  setRoom,
+  updateRoom,
+} from "../../firebase/models/rooms.js";
 import axios from "axios";
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import RoomLink from "../layout/RoomLink.vue";
@@ -1456,34 +1441,34 @@ export default {
     this.fetchAndCleanSheetData(this.gSheetID);
 
     onRoomUpdate(this.roomID, (room) => {
-        this.firebaseReady = true;
-        this.roomInfo = room;
-        if (!this.roomInfo) {
-          console.log("new room!");
+      this.firebaseReady = true;
+      this.roomInfo = room;
+      if (!this.roomInfo) {
+        console.log("new room!");
 
-          setRoom(this.roomID,{
-            extensionData: this.tempExtensionData,
-            currentCardIndex: 0,
-            // sets a default status for these attributes when room is created ?
-            xCardIsActive: false,
-            popCardOneIsActive: false,
-            popCardTwoIsActive: false,
-            popCardThreeIsActive: false,
-            cardSequence: [0, 1, 2],
-          });
+        setRoom(this.roomID, {
+          extensionData: this.tempExtensionData,
+          currentCardIndex: 0,
+          // sets a default status for these attributes when room is created ?
+          xCardIsActive: false,
+          popCardOneIsActive: false,
+          popCardTwoIsActive: false,
+          popCardThreeIsActive: false,
+          cardSequence: [0, 1, 2],
+        });
 
-          if (this.dataReady) {
-            this.shuffleAndResetGame();
-          }
-        } else if (
-          this.roomInfo.cardSequence.length !== this.gSheet.length &&
-          this.dataReady
-        ) {
-          this.firebaseCacheError = true;
-        } else if (this.dataReady) {
-          this.firebaseCacheError = false;
+        if (this.dataReady) {
+          this.shuffleAndResetGame();
         }
-      })
+      } else if (
+        this.roomInfo.cardSequence.length !== this.gSheet.length &&
+        this.dataReady
+      ) {
+        this.firebaseCacheError = true;
+      } else if (this.dataReady) {
+        this.firebaseCacheError = false;
+      }
+    });
   },
   methods: {
     goToCard(index) {
@@ -1727,12 +1712,11 @@ export default {
 
       // sync the shuffled array
       updateRoom(this.roomID, {
-          cardSequence: newCardSequence,
-          locationOfLastCard: newCardSequence.length - 1,
-        })
-        .then(() => {
-          this.shuffleLastCard(tempLastCardIndex);
-        });
+        cardSequence: newCardSequence,
+        locationOfLastCard: newCardSequence.length - 1,
+      }).then(() => {
+        this.shuffleLastCard(tempLastCardIndex);
+      });
     },
     syncExtension() {
       updateRoom(this.roomID, {

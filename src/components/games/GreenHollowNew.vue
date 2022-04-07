@@ -54,7 +54,13 @@
                 roomInfo.currentCardIndex >= customOptions.modalTwoFirstVisible)
             "
           />
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.modalOneLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalOneFirstVisible
+            "
+          >
             <b-button
               v-b-modal.modalOne
               v-on:click="closeMenu()"
@@ -68,7 +74,13 @@
               {{ customOptions.modalOneLabel }}
             </b-button>
           </div>
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.modalTwoLabel &&
+              roomInfo.currentCardIndex >= customOptions.modalTwoFirstVisible
+            "
+          >
             <b-button
               v-b-modal.modalTwo
               v-on:click="closeMenu()"
@@ -104,7 +116,13 @@
             {{ customOptions.chaptersMenuHeader }}
           </h6>
           <!-- chapter one button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterOneFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterOneFirstCard);
@@ -127,7 +145,13 @@
             </b-button>
           </div>
           <!-- chapter two button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterTwoFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterTwoFirstCard);
@@ -150,7 +174,13 @@
             </b-button>
           </div>
           <!-- chapter three button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterThreeFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterThreeFirstCard);
@@ -173,7 +203,13 @@
             </b-button>
           </div>
           <!-- chapter four button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterFourFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterFourFirstCard);
@@ -196,7 +232,13 @@
             </b-button>
           </div>
           <!-- chapter five button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterFiveFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterFiveFirstCard);
@@ -219,7 +261,13 @@
             </b-button>
           </div>
           <!-- chapter six button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.chapterSixFirstCard &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 goToChapter(customOptions.chapterSixFirstCard);
@@ -262,7 +310,13 @@
             {{ customOptions.popCardsMenuHeader }}
           </h6>
           <!-- popcard one button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.popCardOneLabel &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 popCardOne();
@@ -284,7 +338,13 @@
             </b-button>
           </div>
           <!-- popcard two button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.popCardTwoLabel &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 popCardTwo();
@@ -306,7 +366,13 @@
             </b-button>
           </div>
           <!-- popcard three button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              customOptions.popCardThreeLabel &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 popCardThree();
@@ -329,7 +395,13 @@
           </div>
 
           <!-- next deck button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="
+              this.customOptions.showNextDeckButton &&
+              (!customOptions.facilitatorMode || userRole == 'facilitator')
+            "
+          >
             <b-button
               v-on:click="
                 nextDeck();
@@ -450,7 +522,10 @@
             </b-button>
           </div>
           <!-- restart button -->
-          <div class="row menu-row">
+          <div
+            class="row menu-row"
+            v-if="!customOptions.facilitatorMode || userRole == 'facilitator'"
+          >
             <b-button
               v-b-modal.reshuffleConfirm
               v-on:click="closeMenu()"

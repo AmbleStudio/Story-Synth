@@ -120,7 +120,6 @@
 </template>
 
 <script>
-
 // Remove for published version any components you aren't using
 import Header from "./components/layout/Header.vue";
 import Footer from "./components/layout/Footer.vue";
@@ -141,7 +140,7 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-import {anonymousSignIn } from "./firebase/auth.js"
+import { anonymousSignIn } from "./firebase/auth.js";
 
 export default {
   name: "app",
@@ -227,7 +226,7 @@ export default {
   mounted() {
     anonymousSignIn()
       .then(() => {
-        console.log('anon auth')
+        console.log("anon auth");
       })
       .catch((error) => {
         var errorCode = error.code;

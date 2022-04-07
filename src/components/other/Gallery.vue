@@ -101,32 +101,32 @@ export default {
   },
   metaInfo() {
     return {
-      title: "Gallery of Story Synth Games",
+      title: "Play.Amble.Studio",
       meta: [
         {
           property: "description",
-          content: "Check out the top games you can play with Story Synth",
+          content: "A place to play Amble Studio games",
           vmid: "description",
         },
         {
           property: "og:title",
-          content: "Story Synth Gallery",
+          content: "Play.Amble.Studio",
           vmid: "og:title",
         },
         {
           property: "og:description",
-          content: "Check out the top games you can play with Story Synth",
+          content: "A place to play Amble Studio games",
           vmid: "og:description",
         },
         {
           property: "og:image",
           content:
-            "https://diegeticgames.com/uploads/gallery-collage-unfurl.png",
+            "https://amble.studio/wp-content/uploads/2020/07/Amble-Avatar.png",
           vmid: "og:image",
         },
         {
           property: "og:url",
-          content: "https://storysynth.org/" + this.$route.fullPath,
+          content: "https://play.amble.studio/" + this.$route.fullPath,
           vmid: "og:url",
         },
         {

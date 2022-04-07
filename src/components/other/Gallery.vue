@@ -160,4 +160,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+.container {
+  min-height: 100vh;
+  margin: auto;
+}
+</style>

@@ -116,9 +116,16 @@
         "
       ></app-footer>
     </div>
-    <div class="login">
+    <template v-if="$store.state.user">
+      <p>You are logged in!</p>
+      <div class="logout">
+        <button @click="logout">Logout</button>
+      </div>
+    </template>
+    <template v-else class="login">
       <app-auth></app-auth>
-    </div>
+    </template >
+
   </div>
 </template>
 
@@ -145,7 +152,7 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-import { anonymousSignIn } from "./firebase/auth.js";
+//import { anonymousSignIn } from "./firebase/auth.js";
 
 export default {
   name: "app",
@@ -231,18 +238,26 @@ export default {
     };
   },
   mounted() {
-    anonymousSignIn()
-      .then(() => {
-        console.log("anon auth");
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ...
-      });
+
+    this.$store.dispatch("AUTH_CHECK");
+    console.log("dispatched AUTH_CHECK");
+
+    //anonymousSignIn()
+    //  .then(() => {
+    //    console.log("anon auth");
+    //  })
+    //  .catch((error) => {
+    //    var errorCode = error.code;
+    //    var errorMessage = error.message;
+    //    console.log(errorCode, errorMessage);
+    //    // ...
+    //  });
   },
-  methods: {},
+  methods: {
+    logout() {
+      this.$store.dispatch("LOGOUT");
+    },
+  },
 };
 </script>
 

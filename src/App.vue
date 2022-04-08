@@ -152,7 +152,6 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-import { anonymousSignIn } from "./firebase/auth.js";
 
 export default {
   name: "app",
@@ -239,21 +238,9 @@ export default {
   },
   mounted() {
 
+    // Will listen for changes to firebase auth user and will set / clear the vuex store.user.
+    // Will also trigger anon_signin if the user is not set
     this.$store.dispatch("AUTH_CHECK");
-    console.log("dispatched AUTH_CHECK");
-
-    if (!this.$store.state.user) {
-      anonymousSignIn()
-        .then(() => {
-            console.log("anon auth");
-            })
-      .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-          // ...
-          });
-    }
 
   },
   methods: {

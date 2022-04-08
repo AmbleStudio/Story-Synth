@@ -95,6 +95,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+import store from "./store/index.js";
 var vm = new Vue({
   el: "#app",
   router,
@@ -104,7 +105,8 @@ var vm = new Vue({
     return {
       gSheet: null
     };
-  }
+  },
+  store
 });
 
 global.vm = vm;

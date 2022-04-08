@@ -116,15 +116,15 @@
         "
       ></app-footer>
     </div>
-    <template v-if="$store.state.user">
-      <p>You are logged in!</p>
+    <template v-if="$store.state.user && $store.state.user.isAnonymous" class="login">
+      <app-auth></app-auth>
+    </template >
+    <template v-else-if="$store.state.user">
+      <p>You are logged in via email!</p>
       <div class="logout">
         <button @click="logout">Logout</button>
       </div>
     </template>
-    <template v-else class="login">
-      <app-auth></app-auth>
-    </template >
 
   </div>
 </template>
@@ -152,7 +152,7 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-//import { anonymousSignIn } from "./firebase/auth.js";
+import { anonymousSignIn } from "./firebase/auth.js";
 
 export default {
   name: "app",
@@ -242,16 +242,19 @@ export default {
     this.$store.dispatch("AUTH_CHECK");
     console.log("dispatched AUTH_CHECK");
 
-    //anonymousSignIn()
-    //  .then(() => {
-    //    console.log("anon auth");
-    //  })
-    //  .catch((error) => {
-    //    var errorCode = error.code;
-    //    var errorMessage = error.message;
-    //    console.log(errorCode, errorMessage);
-    //    // ...
-    //  });
+    if (!this.$store.state.user) {
+      anonymousSignIn()
+        .then(() => {
+            console.log("anon auth");
+            })
+      .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // ...
+          });
+    }
+
   },
   methods: {
     logout() {
@@ -272,9 +275,6 @@ html {
 
 .btn-outline-dark:not(:hover),
 .btn-outline-primary:not(:hover) {
-  background-color: white;
-}
-.btn-outline-secondary:not(:hover) {
   background-color: white;
 }
 

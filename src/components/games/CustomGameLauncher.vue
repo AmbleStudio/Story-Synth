@@ -466,27 +466,28 @@ export default {
           gameTitle: "Arriba Town",
           byline: "By Amble Studio",
           gameBlurb:
-            '<div class="text-left" style="white-space:normal">\n<p>A tiny quest to find your path and change your village for the better.\n</p>\n</div>',
+            '<div class="text-center" style="white-space:normal">\n<p>A tiny quest to find your path and change your village for the better.\n</p>\n</div>\n<div class="text-center" style="background: lightgray; margin: 0 20px; padding: 10px; border: 1px solid red;">\n<p>If you’ve found your way here looking for a shared game please ask your facilitator to resend you the link.\n</p>\n<p>Facilitators - create a session below and share the in-session link with participants.\n</p>\n</div>',
           coverImage:
-            "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
+            "https://amble.studio/wp-content/uploads/2021/12/Arriba-Town-Rectangle-1.png",
           style:
             "<style>.game-launcher .card-body {background-color: white;}</style>",
           styleTemplate: "arriba",
           facilitatorMode: "TRUE",
+          password: "arriba",
         };
         this.dataReady = true;
 
         break;
 
       case "Arriba-Town-Test":
-        //  correctGSheetID = "1dJErJDT_WF99dDKRZZqAhx95zvuGQIyBlkEdZnMfTgA"
+        //  correctGSheetID = "1HW3W_vhg6I2O5mALsB2d70-5YHSK_CXDNmFZIiGVY48"
         this.customOptions = {
-          gameTitle: "Arriba Town",
+          gameTitle: "Arriba Town [TEST]",
           byline: "By Amble Studio",
           gameBlurb:
-            '<div class="text-left" style="white-space:normal">\n<p>[Test Version] A tiny quest to find your path and change your village for the better.\n</p>\n</div>',
+            '<div class="text-center" style="white-space:normal">\n<p>[TEST VERSION] A tiny quest to find your path and change your village for the better.\n</p>\n</div>\n<div class="text-center" style="background: lightgray; margin: 0 20px; padding: 10px; border: 1px solid red;">\n<p>If you’ve found your way here looking for a shared game please ask your facilitator to resend you the link.\n</p>\n<p>Facilitators - create a session below and share the in-session link with participants.\n</p>\n</div>',
           coverImage:
-            "https://amble.studio/wp-content/uploads/2021/09/higher-res-banner-750x402-1.png",
+            "https://amble.studio/wp-content/uploads/2021/12/Arriba-Town-Rectangle-1.png",
           style:
             "<style>.game-launcher .card-body {background-color: white;}</style>",
           styleTemplate: "arriba",
@@ -1924,5 +1925,10 @@ export default {
   right: 0;
   margin: 0;
   z-index: -1;
+}
+
+img {
+  width: 80%;
+  margin: 35px auto 0 auto !important;
 }
 </style>

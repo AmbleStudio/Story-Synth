@@ -90,14 +90,14 @@ export default {
           gameBlurb:
             "A tiny quest to find your path and change your village for the better.",
           ogImage:
-            "https://amble.studio/wp-content/uploads/2021/08/Arriba-Town.png",
+            "https://amble.studio/wp-content/uploads/2021/12/Arriba-Town-Rectangle-1.png",
         },
         "Arriba-Town-Test": {
           gameTitle: "Arriba Town",
           gameBlurb:
             "[TEST VERSION] A tiny quest to find your path and change your village for the better.",
           ogImage:
-            "https://amble.studio/wp-content/uploads/2021/08/Arriba-Town.png",
+            "https://amble.studio/wp-content/uploads/2021/12/Arriba-Town-Rectangle-1.png",
         },
         "Umberdred-Institute": {
           gameTitle: "The Umberdred Institute for Emerging Evildoers",

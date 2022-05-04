@@ -414,6 +414,7 @@ export default {
           styleTemplate: "green-hollow",
           license:
             '<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">Green Hollow by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://amble.studio">Amble Studio</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p><p>Learn more about how we can adapt Green Hollow for your team on <a href="http://amble.studio/green-hollow-game">the Amble Studio website</a>.</p><p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
+          // facilitatorMode: "TRUE",
         };
         this.dataReady = true;
 
@@ -433,7 +434,7 @@ export default {
           styleTemplate: "green-hollow",
           license:
             '<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">Green Hollow by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://amble.studio">Amble Studio</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p><p>Learn more about how we can adapt Green Hollow for your team on <a href="http://amble.studio/green-hollow-game">the Amble Studio website</a>.</p><p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
-          facilitatorMode: "TRUE",
+          // facilitatorMode: "TRUE",
         };
         this.dataReady = true;
 
@@ -453,6 +454,7 @@ export default {
           styleTemplate: "green-hollow",
           license:
             '<p>Office Heroes is a copyright work of <a href="https://amble.studio">Amble Studio</a>, all rights reserved, 2021.</p><p>This work is based on <a href="http://www.forthequeengame.com/">For the Queen</a>, a product of Alex Roberts and Evil Hat Productions, and licensed for our use under the <a href-"http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>. <br/><br/>We would also like to acknowledge inspiration from the <a href="https://tinkertaylorpublications.itch.io/">Tinker Taylor Publication</a> game, <a href="https://tinkertaylorpublications.itch.io/vineyard">This Vineyard Will Be Our Salvation"</a>.',
+          // facilitatorMode: "TRUE",
         };
         this.dataReady = true;
 
@@ -510,6 +512,7 @@ export default {
           license:
             '<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License.',
           generatorRowLayout: "1,3,1,1,1",
+          // facilitatorMode: "TRUE",
         };
 
         this.dataReady = true;

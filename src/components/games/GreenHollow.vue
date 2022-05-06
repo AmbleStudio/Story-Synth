@@ -3,6 +3,8 @@
     <div class="full-page-background"></div>
     <div v-html="customOptions.style"></div>
 
+    <!-- TODO: an an else case that renders the normal component -->
+    <h1 v-if="permissionDenied">NOOOOOPE</h1>
     <!-- Menu Bar -->
     <div class="menu-bar mb-4 d-flex align-items-center">
       <!--The "Menu" button that opens the menu-->
@@ -1422,6 +1424,7 @@ import {
   onRoomUpdate,
   setRoom,
   updateRoom,
+  getRoom,
 } from "../../firebase/models/rooms.js";
 import axios from "axios";
 import ExtensionManager from "../extensions/ExtensionManager.vue";
@@ -1464,6 +1467,7 @@ export default {
       },
       deckTransitionArray: null,
       error: false,
+      permissionDenied: false
     };
   },
   metaInfo() {
@@ -1519,32 +1523,43 @@ export default {
     };
   },
   mounted() {
-    this.fetchAndCleanSheetData(this.gSheetID);
+
+    getRoom(this.roomID)
+      .then(room => {
+        if(!room){
+          setRoom(this.roomID, {
+            extensionData: this.tempExtensionData,
+            currentCardIndex: 0,
+            // sets a default status for these attributes when room is created ?
+            xCardIsActive: false,
+            popCardOneIsActive: false,
+            popCardTwoIsActive: false,
+            popCardThreeIsActive: false,
+            cardSequence: [0, 1, 2],
+          })
+          .then(() => {
+              console.log("setRoom ok")
+              this.fetchAndCleanSheetData(this.gSheetID);
+
+              if (this.dataReady) {
+                this.shuffleAndResetGame();
+              }
+
+          })
+          .catch(err => {
+            if (err.code == "permission-denied"){
+              this.permissionDenied = true
+            }
+          });
+        }
+      });
 
     onRoomUpdate(this.roomID, (room) => {
       this.firebaseReady = true;
-      this.roomInfo = room;
-      if (!this.roomInfo) {
-        console.log("new room!");
-
-        setRoom(this.roomID, {
-          extensionData: this.tempExtensionData,
-          currentCardIndex: 0,
-          // sets a default status for these attributes when room is created ?
-          xCardIsActive: false,
-          popCardOneIsActive: false,
-          popCardTwoIsActive: false,
-          popCardThreeIsActive: false,
-          cardSequence: [0, 1, 2],
-        });
-
-        if (this.dataReady) {
-          this.shuffleAndResetGame();
-        }
-      } else if (
-        this.roomInfo.cardSequence.length !== this.gSheet.length &&
-        this.dataReady
-      ) {
+      if(room){
+        this.roomInfo = room;
+      }
+      if ( this.roomInfo.cardSequence.length !== this.gSheet.length && this.dataReady) {
         this.firebaseCacheError = true;
       } else if (this.dataReady) {
         this.firebaseCacheError = false;
@@ -1800,9 +1815,9 @@ export default {
       });
     },
     syncExtension() {
-      updateRoom(this.roomID, {
-        extensionData: this.roomInfo.extensionData,
-      });
+      //updateRoom(this.roomID, {
+      //  extensionData: this.roomInfo.extensionData,
+      //});
     },
     fetchAndCleanSheetData(sheetID) {
       // Remove for published version

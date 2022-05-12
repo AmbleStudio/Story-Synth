@@ -408,7 +408,7 @@ export default {
           gameBlurb:
             '<div class="text-center" style="white-space:normal">\n<p>A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
           coverImage:
-            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
+            "https://amble.studio/wp-content/uploads/2022/05/Green-Hollow-Square.png",
           style:
             '<link rel="stylesheet"><style>.game-launcher .card-body {background-color: white;} .full-page-background {\n background: rgb(238,251,255); background-image: url(https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-background.png); background-size: contain; background-repeat: no-repeat; background-attachment: fixed; background-position: bottom center; \n} </style>',
           styleTemplate: "green-hollow",
@@ -428,7 +428,7 @@ export default {
           gameBlurb:
             '<div class="text-center" style="white-space:normal">\n<p>[TEST VERSION] A gameful team-building exercise set in an ancient village thousands of years ago.\n</p>\n</div>',
           coverImage:
-            "https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-Square-Bw.png",
+            "https://amble.studio/wp-content/uploads/2022/05/Green-Hollow-Square.png",
           style:
             '<link rel="stylesheet"><style>.game-launcher .card-body {background-color: white;} .full-page-background {\n background: rgb(238,251,255); background-image: url(https://amble.studio/wp-content/uploads/2021/09/Green-Hollow-background.png); background-size: contain; background-repeat: no-repeat; background-attachment: fixed; background-position: bottom center; \n} </style>',
           styleTemplate: "green-hollow",

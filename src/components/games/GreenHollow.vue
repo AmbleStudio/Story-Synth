@@ -1526,6 +1526,7 @@ export default {
 
     getRoom(this.roomID)
       .then(room => {
+
         if(!room){
           setRoom(this.roomID, {
             extensionData: this.tempExtensionData,
@@ -1551,10 +1552,18 @@ export default {
               this.permissionDenied = true
             }
           });
+        }else{
+          // We must do this before setting the room other wise things break. Yay.
+          this.fetchAndCleanSheetData(this.gSheetID);
+          this.setRoom(room)
         }
       });
 
-    onRoomUpdate(this.roomID, (room) => {
+    onRoomUpdate(this.roomID, this.setRoom);
+  },
+  methods: {
+
+    setRoom(room) {
       this.firebaseReady = true;
       if(room){
         this.roomInfo = room;
@@ -1564,9 +1573,7 @@ export default {
       } else if (this.dataReady) {
         this.firebaseCacheError = false;
       }
-    });
-  },
-  methods: {
+    },
     goToCard(index) {
       updateRoom(this.roomID, {
         currentCardIndex: index,
@@ -1815,9 +1822,9 @@ export default {
       });
     },
     syncExtension() {
-      //updateRoom(this.roomID, {
-      //  extensionData: this.roomInfo.extensionData,
-      //});
+      updateRoom(this.roomID, {
+        extensionData: this.roomInfo.extensionData,
+      });
     },
     fetchAndCleanSheetData(sheetID) {
       // Remove for published version

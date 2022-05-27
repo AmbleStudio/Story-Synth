@@ -116,11 +116,23 @@
         "
       ></app-footer>
     </div>
+    <template v-if="$store.state.user && $store.state.user.isAnonymous" class="login">
+      <app-auth></app-auth>
+    </template >
+    <template v-else-if="$store.state.user">
+      <p>You are logged in via email!</p>
+      <div class="logout">
+        <button @click="logout">Logout</button>
+      </div>
+    </template>
+
   </div>
 </template>
 
 <script>
 // Remove for published version any components you aren't using
+import Auth from "./components/auth/Auth.vue";
+
 import Header from "./components/layout/Header.vue";
 import Footer from "./components/layout/Footer.vue";
 
@@ -140,12 +152,13 @@ import Generator from "./components/formats/Generator.vue";
 import Gridmap from "./components/formats/Gridmap.vue";
 import Hexflower from "./components/formats/Hexflower.vue";
 import Sandbox from "./components/formats/Sandbox.vue";
-import { anonymousSignIn } from "./firebase/auth.js";
 
 export default {
   name: "app",
   components: {
     // Remove unused components from the published version
+    "app-auth": Auth,
+
     "app-header": Header,
     "app-footer": Footer,
 
@@ -224,18 +237,17 @@ export default {
     };
   },
   mounted() {
-    anonymousSignIn()
-      .then(() => {
-        console.log("anon auth");
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ...
-      });
+
+    // Will listen for changes to firebase auth user and will set / clear the vuex store.user.
+    // Will also trigger anon_signin if the user is not set
+    this.$store.dispatch("AUTH_CHECK");
+
   },
-  methods: {},
+  methods: {
+    logout() {
+      this.$store.dispatch("LOGOUT");
+    },
+  },
 };
 </script>
 
@@ -250,9 +262,6 @@ html {
 
 .btn-outline-dark:not(:hover),
 .btn-outline-primary:not(:hover) {
-  background-color: white;
-}
-.btn-outline-secondary:not(:hover) {
   background-color: white;
 }
 

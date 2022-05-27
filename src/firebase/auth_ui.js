@@ -4,7 +4,7 @@ import * as firebaseui from "firebaseui";
 import auth from "./auth";
 
 export const authUiConfig = {
-  signInSuccessUrl: "/",
+  signInSuccessUrl: "/#",
   signInOptions: [
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,

@@ -14,7 +14,7 @@ export function onRoomUpdate(roomID, onUpdate) {
   const roomDocument = doc(roomsCollection, roomID);
 
   onSnapshot(roomDocument, snapshot => {
-    onUpdate(snapshot.data());
+    onUpdate(snapshot.data(), snapshot);
   });
 }
 
@@ -32,7 +32,6 @@ export function updateRoom(roomID, data) {
   return updateDoc(roomDocument, data);
 }
 
-// TODO probably not used
 export async function getRoom(roomId) {
   return getDoc(getRoomDoc(roomId)).then(docSnap => {
     if (docSnap.exists()) {

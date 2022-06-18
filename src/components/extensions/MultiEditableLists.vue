@@ -2,7 +2,7 @@
   <div class="mb-4 multi-editable-lists">
       <div class="row">
         <div class="col-sm">
-          <div class="card d-flex shadow">
+          <div class="card d-flex extension-card">
             <div class="card-body">
 
               <div v-if="multiEditableLists != []">
@@ -15,22 +15,22 @@
                   <div v-for="(item, itemIndex) in list.value" v-bind:key="itemIndex" class="row">
                     <div class="col-sm justify-content-between d-flex my-1">
                       <span style="min-width:1em"></span>
-                      <div v-if="itemIndex != currentEditItemIndex || listIndex != currentEditListIndex">{{item}}</div>
+                      <div class="my-auto" v-if="itemIndex != currentEditItemIndex || listIndex != currentEditListIndex">{{item}}</div>
                       <input v-else type="text" v-model="currentEditText" maxlength="50">
                       <div>
-                        <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="editItem(listIndex, itemIndex)" v-if="currentEditItemIndex != itemIndex || currentEditListIndex != listIndex">
+                        <button class="btn btn-sm btn-outline-dark m-1 px-1 edit-button" v-on:click="editItem(listIndex, itemIndex)" v-if="currentEditItemIndex != itemIndex || currentEditListIndex != listIndex">
                           <b-icon-pencil></b-icon-pencil>
                         </button>
                         <div v-else>
+                          <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="deleteItem(listIndex, itemIndex)"><b-icon-trash></b-icon-trash></button>
                           <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="saveEditedItem(listIndex, itemIndex)">
                             <b-icon-check2></b-icon-check2>
                           </button>
-                          <button class="btn btn-sm btn-outline-dark m-1 px-1" v-on:click="deleteItem(listIndex, itemIndex)"><b-icon-trash></b-icon-trash></button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <form>
+                  <form class="mb-4">
                     <input v-model="newItemArray[listIndex]" type="text" maxlength="50">
                     <button :disabled="!newItemArray[listIndex]" class="btn btn-outline-dark m-3" v-on:click="addItem(listIndex, newItemArray[listIndex])">Add</button>
                   </form>
@@ -88,9 +88,10 @@ export default {
       
       let tempNewLists = this.multiEditableLists
 
-      console.log(tempNewLists)
-
       tempNewLists[listIndex].length == 0 ? tempNewLists[listIndex] = [] : tempNewLists[listIndex].value.splice(itemIndex, 1)
+      this.currentEditItemIndex = null;
+      this.currentEditListIndex = null;
+      this.currentEditText = "";
 
       this.$emit('process-extension-update', ['multiEditableLists',JSON.stringify(tempNewLists)])
     }

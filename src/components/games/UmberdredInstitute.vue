@@ -7,6 +7,56 @@
     <div class="full-page-background"></div>
     <div v-html="customOptions.style"></div>
 
+    <!-- Menu Bar -->
+    <div class="menu-bar mb-4 d-flex align-items-center">
+      <button class="btn btn-outline-dark mr-auto border-0" v-b-modal.menuModal><b-icon-list></b-icon-list> Menu</button>
+      <!-- <div v-if="customOptions.gameTitle" class="mx-auto align-middle text-center">{{customOptions.gameTitle}}</div> -->
+      <app-roomLink class="d-none d-sm-block" :routeRoomID="$route.params.roomID" v-if="dataReady && firebaseReady"></app-roomLink>
+      
+      <b-modal
+        id="menuModal"
+        :title="customOptions.gameTitle ? customOptions.gameTitle : 'Menu'" 
+        hide-footer
+      >  
+        <b-container>
+          <div class="row menu-row">
+            <b-button
+              class="border-0 btn-lg btn-block"
+              v-on:click="copyLinkToClipboard(); closeMenu();"
+              @click="$bvToast.show('copyToast')"
+            >
+              <b-icon-link45deg></b-icon-link45deg> Copy URL 
+            </b-button>
+          </div>
+        </b-container>
+        <div class="" v-if="customOptions.modalOneLabel || customOptions.modalTwoLabel">
+          <hr class='mb-4'/>
+          <b-button
+            v-b-modal.modalOne
+            v-on:click="closeMenu();"
+            variant="outline-dark"
+            class="btn-block btn-lg"
+            v-if="customOptions.modalOneLabel"
+          >
+            {{ customOptions.modalOneLabel }}
+          </b-button>
+          <b-button
+            v-b-modal.modalTwo
+            v-on:click="closeMenu();"
+            variant="outline-dark"
+            class="btn-block btn-lg"
+            v-if="customOptions.modalTwoLabel"
+            >{{ customOptions.modalTwoLabel }}</b-button
+          >
+        </div>
+        <div class="row menu-row mt-4">
+          <a href="https://storysynth.org" target="_blank">Powered by Story Synth</a>
+        </div>
+      </b-modal>
+    </div>
+
+    <b-alert show class="demoInfo" variant="info" v-if="customOptions.demoInfo">This demo is powered by <a :href="customOptions.demoInfo" target="_blank">this Google Sheet Template</a>. Copy the sheet and start editing it to design your own game!</b-alert>
+
     <div class="game-meta">
       <div class="mb-4" v-if="customOptions.gameTitle || customOptions.byline">
         <div class="row text-center" v-if="customOptions.gameTitle">
@@ -31,6 +81,24 @@
       ></div>
     </div>
 
+    <div
+        v-if="
+          dataReady &&
+            firebaseReady &&
+            roomInfo &&
+            Object.keys(roomInfo.extensionData).length > 1
+        "
+      >
+        <app-extensionManager
+          @sync-extension="syncExtension()"
+          :extensionData="roomInfo.extensionData"
+          :extensionList="tempExtensionData"
+          :roomInfo="roomInfo"
+          :extensionLocation="'upper'"
+          class="extension-upper"
+        ></app-extensionManager>
+      </div>
+
     <div class="row">
       <div
         class="btn-group col-sm"
@@ -38,12 +106,12 @@
         aria-label="Extra Info"
         v-if="customOptions.modalOneLabel || customOptions.modalTwoLabel"
       >
-        <b-button
+        <!-- <b-button
           v-b-modal.modalOne
           variant="outline-dark"
           v-if="customOptions.modalOneLabel"
           >{{ customOptions.modalOneLabel }}</b-button
-        >
+        > -->
 
         <b-modal
           id="modalOne"
@@ -57,12 +125,12 @@
           ></div>
         </b-modal>
 
-        <b-button
+        <!-- <b-button
           v-b-modal.modalTwo
           variant="outline-dark"
           v-if="customOptions.modalTwoLabel"
           >{{ customOptions.modalTwoLabel }}</b-button
-        >
+        > -->
 
         <b-modal
           id="modalTwo"
@@ -255,9 +323,9 @@
     <div
       v-if="
         dataReady &&
-        firebaseReady &&
-        roomInfo &&
-        Object.keys(roomInfo.extensionData).length > 1
+          firebaseReady &&
+          roomInfo &&
+          Object.keys(roomInfo.extensionData).length > 1
       "
     >
       <app-extensionManager
@@ -265,20 +333,24 @@
         :extensionData="roomInfo.extensionData"
         :extensionList="tempExtensionData"
         :roomInfo="roomInfo"
+        :extensionLocation="'lower'"
+        class="extension-lower"
       ></app-extensionManager>
     </div>
   </div>
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import axios from "axios";
+import RoomLink from '../layout/RoomLink.vue';
 
 export default {
   name: "app-umberdredInstitute",
   components: {
     "app-extensionManager": ExtensionManager,
+    'app-roomLink': RoomLink,
   },
   props: {
     roomID: String,
@@ -305,15 +377,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection.doc(this.roomID).set({
+          setRoom(this.roomID,{
             extensionData: this.tempExtensionData,
             currentGeneratorSelection: [0, 1, 2],
           });
@@ -323,11 +393,19 @@ export default {
           }
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   methods: {
+    closeMenu(){
+      this.$bvModal.hide("menuModal");
+    },
+    copyLinkToClipboard(){
+      let currentUrl = location.hostname.toString() + "/" + this.$route.fullPath
+      navigator.clipboard.writeText(currentUrl).then(function() {
+        console.log('copied url')
+      }, function() {
+        console.log('copy failed')
+      });
+    },
     shuffleAll() {
       let newGeneratorSelection = [];
 
@@ -340,7 +418,7 @@ export default {
       console.log("new generator picks:", newGeneratorSelection);
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
@@ -353,7 +431,7 @@ export default {
 
       if (newGeneratorSelection[index - 1] == newValueIndex){
         newGeneratorSelection[index - 1] = ''
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           currentGeneratorSelection: newGeneratorSelection,
         });
       }      
@@ -361,7 +439,7 @@ export default {
       newGeneratorSelection[index - 1] = newValueIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
@@ -371,12 +449,12 @@ export default {
       newGeneratorSelection[index - 1] = optionIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentGeneratorSelection: newGeneratorSelection,
       });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -532,9 +610,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {
@@ -589,6 +665,10 @@ export default {
 <style scoped lang='scss'>
 
 $base-color: rgb(33, 33, 33);
+
+.game-room {
+  padding-top: 20px;
+}
 
 .generator-main {
   font-weight: bold;  

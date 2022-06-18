@@ -20,6 +20,7 @@
     border: none !important;
     background-color: $base-color !important;
     color: white !important;
+
     &:hover {
       background-color: rgba($base-color, 0.8) !important;
     }
@@ -28,7 +29,7 @@
   .full-page-background {
     background-color: #ffe8b8;
     background-blend-mode: multiply;
-    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/handmadepaper.png");
+    background-image: url(/img/paper.png);
   }
 
   h1,
@@ -38,6 +39,7 @@
     text-shadow: 1px 0 $label-bg, 0 1px $label-bg, 1px 0 $label-bg,
       0 1px $label-bg;
   }
+
   .generator-cell-label {
     font-family: "MedievalSharp", cursive !important;
     background: none !important;

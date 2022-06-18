@@ -2,6 +2,10 @@
   <div class="container game-room">
     <div class="full-page-background"></div>
     <div v-html="customOptions.style"></div>
+    
+    <div class="menu-bar mb-4 d-flex align-items-right">
+      <app-roomLink class="d-none d-sm-block" :routeRoomID="$route.params.roomID" v-if="dataReady && firebaseReady"></app-roomLink>
+    </div>
 
     <div class="mb-4 game-meta" v-if="customOptions.gameTitle || customOptions.byline">
       <div class="row text-center" v-if="customOptions.gameTitle">
@@ -16,6 +20,8 @@
         </div>
       </div>
     </div>
+    
+    <b-alert show class="" variant="info" v-if="customOptions.demoInfo">This demo is powered by <a :href="customOptions.demoInfo" target="_blank">this Google Sheet Template</a>. Copy the sheet and start editing it to design your own game!</b-alert>
 
     <div class="card shadow" v-if="(!dataReady || !firebaseReady) && !error">
       <div class="card-body text-center">
@@ -27,7 +33,7 @@
     <div v-if="timerSynced">
       <div v-if="!playerSelected" class="row my-4">
         <div class="btn-group col-sm" role="group" aria-label="Role Controls">
-          <button type="button" class="btn btn-outline-primary" v-for="player in playerArray" v-bind:key="player" v-on:click="selectPlayer(player)">{{player}}</button>
+          <button type="button" class="btn btn-outline-dark" v-for="player in playerArray" v-bind:key="player" v-on:click="selectPlayer(player)">{{player}}</button>
         </div>
       </div>
       <div class="player-label text-center row my-4" v-if="playerSelected">
@@ -37,11 +43,11 @@
         </div>
       </div>
 
-    <div class="timer-box game-room mb-4 shadow">
+    <div class="timer-box mb-4 pt-4">
+      <span class="time">{{ time }}</span>
       <div class="btn-container px-1">
 
 
-          <span class="time">{{ time }}</span>
 
           <div v-if="playerSelected" class="row mb-4">
             <div class="btn-group col-sm-6 offset-sm-3" role="group" aria-label="Timer Controls">
@@ -82,11 +88,15 @@
 </template>
 
 <script>
-import { roomsCollection } from '../../firebase';
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import axios from 'axios'
+import RoomLink from '../layout/RoomLink.vue';
 
 export default {
   name: 'app-timed',
+  components:{
+    'app-roomLink': RoomLink,
+  },
   props: {
     roomID: String,
     gSheetID: String
@@ -115,17 +125,13 @@ export default {
   },
   mounted(){
     this.fetchAndCleanSheetData(this.gSheetID);
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection
-            .doc(this.roomID)
-            .set({
+          setRoom(this.roomID,{
               timeBegan: null
             , timeStopped: null
             , stoppedDuration: 0
@@ -145,49 +151,44 @@ export default {
 
     this.sync();
   },
-  firestore() {
-    return {
-      roomInfo: roomsCollection.doc(this.roomID)//.set(this.roomInfo, {merge:true})
-    }
-  },
   methods: {
     start() {
       if(this.roomInfo.running) return;
 
       if (this.roomInfo.timeBegan === null) {
         this.reset();
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           timeBegan: new Date()
         })
       }
 
       if (this.roomInfo.timeStopped !== null) {
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           stoppedDuration: this.roomInfo.stoppedDuration + (new Date() - this.roomInfo.timeStopped.toDate())
         })
       }
 
       this.started = setInterval(this.clockRunning, 100);
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         running: true
       })
 
     },
     stop() {
       if (this.roomInfo.timeBegan !== null){
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           running: false
         })
-        roomsCollection.doc(this.roomID).update({
+        updateRoom(this.roomID, {
           timeStopped: new Date()
         })
       }
     },
     reset() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         running: false
       })
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         stoppedDuration: 0,
         timeBegan: null,
         timeStopped: null
@@ -237,7 +238,7 @@ export default {
         sheetID = '1yq2AKwaYL1uZrCnEfwgSpC0SPkQAZqnCdjNxH_pm018'
       }
 
-      var getURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetID + '?includeGridData=true&ranges=a1:aa100&key=' + process.env.VUE_APP_FIREBASE_API_KEY
+      var getURL = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetID + '?includeGridData=true&ranges=a1:aa400&key=' + process.env.VUE_APP_FIREBASE_API_KEY
       axios.get(getURL)
       .then(response => {
 
@@ -310,6 +311,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this.roomInfo component only -->
 
 <style scoped>
+
+  .game-room {
+    padding-top: 20px;
+  }
   .time {
     font-size: 4em;
   }

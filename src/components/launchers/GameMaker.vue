@@ -1,6 +1,6 @@
 <template>
   <div class="game-maker">
-    <div class="container">
+    <div class="">
       <div v-if="!$route.params.gameType" class="card shadow mb-4">
         <div class="card-body">
           <!-- Take in game title, byline, and blurb from query params -->
@@ -49,27 +49,20 @@
           </div>
           <!-- End query param section -->
 
-          <div class="row my-4">
-            <div class="col-sm text-center">
-              <h2>Create a Game</h2>
-            </div>
-          </div>
-
           <form>
             <!-- Remove for published version. Comment out the format selection and gSheetID field. Make sure to hard code the gSheetID in the game's .vue file. -->
             <div v-if="!routeGSheetID">
-              <div class="row">
-                <div class="col">
-                  <p>Get started by pasting your Google Sheet link below. Check out the <a href="https://docs.storysynth.org/guide/#overview">Story Synth Guide</a> to learn more.</p>
-                </div>
+              <div class="row mb-3 mx-auto">
+                <h3>Upload your game</h3>
               </div>
               <div class="row mb-4">
                 <div class="col-sm">
-                  Game Format
-                  <select
+                  Select your game format
+                  <b-form-select
                     v-model="gameType"
                     class="custom-select"
-                    title="Game Format"
+                    title="Select your game format"
+                    size="lg" 
                   >
                     <option disabled value="">Please select one</option>
                     <option>Shuffled</option>
@@ -80,13 +73,13 @@
                     <option>Phases</option>
                     <option>Generator</option>
                     <option>Hexflower</option>
-                  </select>
+                  </b-form-select>
                 </div>
               </div>
 
               <div class="row mb-4">
                 <div class="col-sm">
-                  Google Sheet Public Link
+                  Paste your Google Sheet public link
                   <svg
                     v-b-tooltip.hover
                     title="Paste in the entire URL link to your publicly shared Google Sheet that contains the game data"
@@ -103,11 +96,12 @@
                     />
                   </svg>
 
-                  <input
+                  <b-form-input
                     v-model="gSheetID"
                     class="form-control"
                     placeholder="Google Sheet Public Link"
                     title="Google Sheet Public Link"
+                    size="lg" 
                   />
                 </div>
               </div>
@@ -115,7 +109,7 @@
             <!-- end of format and sheet fields -->
 
             <!-- For the published version, replace gameType with the specific game type in quotes. Example "Shuffled"  -->
-            <div class="row mb-4">
+            <div class="row mb-2">
               <div class="col-sm text-center">
                 <router-link
                   :to="{ path: '/' + formatToURL(gameType, gSheetID) }"
@@ -123,9 +117,9 @@
                   <button
                     :disabled="!gSheetID"
                     type="button"
-                    class="btn btn-dark"
+                    class="btn btn-lg button-light"
                   >
-                    Create Game
+                    Upload game
                   </button>
                 </router-link>
               </div>
@@ -231,8 +225,8 @@ export default {
 
 <style scoped>
 .game-maker {
-  max-width: 600px;
-  margin: auto;
+  
+  width: 100%;
 }
 
 li {

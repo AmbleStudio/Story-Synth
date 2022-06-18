@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import { roomsCollection } from "../../firebase";
+import {onRoomUpdate, setRoom, updateRoom} from "../../firebase/models/rooms.js"
 import ExtensionManager from "../extensions/ExtensionManager.vue";
 import axios from "axios";
 
@@ -200,15 +200,13 @@ export default {
   mounted() {
     this.fetchAndCleanSheetData(this.gSheetID);
 
-    this.$bind("roomInfo", roomsCollection.doc(this.roomID))
-      .then(() => {
+    onRoomUpdate(this.roomID, (room) => {
         this.firebaseReady = true;
-      })
-      .then(() => {
+        this.roomInfo = room;
         if (!this.roomInfo) {
           console.log("new room!");
 
-          roomsCollection.doc(this.roomID).set({
+          setRoom(this.roomID,{
             extensionData: this.tempExtensionData,
             currentMapData: [0, 1, 2],
           });
@@ -218,9 +216,6 @@ export default {
           }
         }
       })
-      .catch((error) => {
-        console.log("error in loading: ", error);
-      });
   },
   methods: {
     shuffleAll() {
@@ -247,7 +242,7 @@ export default {
       console.log("new map data:", newMapData);
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentMapData: newMapData,
       });
     },
@@ -261,7 +256,7 @@ export default {
       newMapData[index - 1] = newValueIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentMapData: newMapData,
       });
     },
@@ -271,12 +266,12 @@ export default {
       newMapData[index - 1] = optionIndex;
 
       // sync the shuffled array
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         currentMapData: newMapData,
       });
     },
     syncExtension() {
-      roomsCollection.doc(this.roomID).update({
+      updateRoom(this.roomID, {
         extensionData: this.roomInfo.extensionData,
       });
     },
@@ -290,7 +285,7 @@ export default {
       var getURL =
         "https://sheets.googleapis.com/v4/spreadsheets/" +
         sheetID +
-        "?includeGridData=true&ranges=a1:aa100&key=" + process.env.VUE_APP_FIREBASE_API_KEY;
+        "?includeGridData=true&ranges=a1:aa400&key=" + process.env.VUE_APP_FIREBASE_API_KEY;
 
       // For the published version - remove if you're hardcoding the data instead of using Google Sheets
       axios
@@ -391,9 +386,7 @@ export default {
             this.firebaseReady &&
             Object.keys(this.tempExtensionData).length > 1
           ) {
-            roomsCollection
-              .doc(this.roomID)
-              .update({ extensionData: this.tempExtensionData });
+            updateRoom(this.roomID, { extensionData: this.tempExtensionData });
           }
 
           if (this.customOptions.wallet) {

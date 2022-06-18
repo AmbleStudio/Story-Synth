@@ -1,0 +1,131 @@
+.style-template-homepage {
+  @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+  $dark-blue: #323c69;
+  $light-blue: #d9fcfd;
+
+  background: linear-gradient(181.34deg, #f9edb7 1.25%, #ecb472 98.85%);
+  color: $dark-blue;
+  text-align: center;
+
+  // blue gradient background: linear-gradient(259.21deg, #3156B5 8.81%, #323C69 116.74%);
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2.75rem;
+  }
+
+  a {
+    color: #003daf;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  button,
+  a.btn {
+    font-weight: bold;
+    background: $dark-blue;
+    color: $light-blue;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover:not(.button-light) {
+      background-color: darken($dark-blue, 8%);
+    }
+    &:active {
+      background-color: darken($dark-blue, 20%);
+    }
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  .button-light {
+    background: $light-blue;
+    font-weight: bold;
+    color: $dark-blue;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover:enabled {
+      background-color: darken($light-blue, 8%);
+    }
+    &:active:enabled {
+      background-color: darken($light-blue, 20%);
+    }
+  }
+
+  .card {
+    text-align: left;
+
+    a.btn {
+      background: $light-blue;
+      font-weight: bold;
+      color: $dark-blue;
+      font-family: "Poppins", sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        background-color: darken($light-blue, 8%);
+      }
+      &:active {
+        background-color: darken($light-blue, 20%);
+      }
+    }
+  }
+
+  .navbar {
+    transition: all 0.2s;
+  }
+  .navbar:not(.scrolledNavbar) {
+    background-color: transparent !important;
+  }
+  .navbar-brand,
+  .nav-item,
+  .nav-link {
+    color: $dark-blue !important;
+    font-family: "Poppins", sans-serif !important;
+
+    :hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  .navbar.scrolledNavbar {
+    background-color: $dark-blue !important;
+    // animation: navbarFade 0.5s forwards;
+  }
+
+  // @keyframes navbarFade {
+  //   0% {
+  //     background-color: transparent !important;
+  //   }
+
+  //   100% {
+  //     background-color: $dark-blue !important;
+  //   }
+  // }
+
+  .scrolledNavbar {
+    .navbar-brand,
+    .nav-item,
+    .nav-link {
+      color: $light-blue !important;
+      font-family: "Poppins", sans-serif !important;
+
+      :hover {
+        text-decoration: underline !important;
+      }
+    }
+  }
+}

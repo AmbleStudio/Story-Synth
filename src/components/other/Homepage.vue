@@ -3,53 +3,32 @@
     <div class="container">
       <div class="homepage-header row padding-after-navbar mb-4">
         <div class="col-sm text-center">
-          <h1><img src="/img/story-synth-logotype.svg" alt="Story Synth Logo"></h1>
-          <h2>Make, play, and share storytelling games</h2>
+          <h2 class="text-center mb-4">Welcome to Play.Amble</h2>
         </div>
       </div>
 
-      <div class="homepage-gif row rounded-m clipped mb-4 shadow">
+      <!-- <div class="homepage-gif row rounded-m clipped mb-4 shadow">
         <div class="embed-responsive embed-responsive-16by9">
           <video class="embed-responsive-item" autoplay loop controls muted>
             <source src="https://diegeticgames.com/uploads/story-synth-teaser.mp4" type="video/mp4" />
           </video>
         </div>
-      </div>
+      </div> -->
 
-      <div class="homepage-about margin-between-sections">
+      <div class="homepage-about">
         <div class="row margin-between-sections">
-          <h3 class="col-sm mb-4">
-            Story Synth is a free web platform for making, playing, and sharing storytelling games. Just design in
-            Google Sheets and publish here!
-          </h3>
+          <div class="col-sm mb-4">
+          <p>
+          Play.Amble is a gaming platform that hosts some of Amble's digital
+          games. It is based on the <a href="http://storysynth.org">Story Synth</a> open source software platform, which you can use to make your own story games. Explore selected Amble games below, or visit our main site at <a href="http://amble.studio">Amble.Studio</a> to learn more, and find more games.
+        </p>
         </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Easy to start</h3>
-            <div>Jump start your design with dozens of templates, formats, and extensions</div>
-            <!-- Formats by Bart van der Griendt from NounProject.com https://thenounproject.com/icon/formats-687218/ -->
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px; transform:scale(0.9);"
-              src="/img/options.svg" alt="an icon of several pages, representing different formats and templates">
-          </div>
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Design in Sheets</h3>
-            <div>Your content lives in Google Sheets, so designing is quick and iteration is instantaneous</div>
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px; transform: translateY(1.5%);"
-              src="/img/sheet-to-synth.svg" alt="an icon of a sheet turning into a Story Synth session">
-          </div>
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Multiplayer</h3>
-            <div>Game sessions have realtime multiplayer, perfect for online playtesting and publishing</div>
-            <!-- icon by Iconathon https://thenounproject.com/icon/networking-2909312/-->
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px;" src="/img/connection.svg"
-              alt="an icon of people connected around the globe, signifying the realtime multiplayer of Story Synth">
-          </div>
         </div>
       </div>
 
       <!-- Section: play -->
       <div class="homepage-play margin-between-sections">
-        <h2 class="text-center mb-4">Play an existing game</h2>
+        <!-- <h2 class="text-center mb-4">Play an existing game</h2> -->
 
         <div class="row">
           <div class="offset-lg-0 col-lg-12 col-md-4 mb-2 d-flex flex-column">
@@ -120,15 +99,15 @@
           </div>
         </div>
 
-        <div class="row mt-3">
+        <!-- <div class="row mt-3">
           <div class="col-sm">
             <a href="/Gallery" class="btn py-3 px-4 btn-lg">See all games</a>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Section: grant -->
-      <div class="margin-between-sections">
+      <!-- <div class="margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2>Grant Program</h2>
@@ -151,10 +130,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Section: create -->
-      <div class="homepage-create margin-between-sections">
+      <!-- <div class="homepage-create margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2>Create a new game</h2>
@@ -205,7 +184,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
       <!-- Section: test -->
       <div class="homepage-test margin-between-sections">
@@ -225,7 +204,7 @@
       </div>
 
       <!-- Section: publish -->
-      <div class="homepage-publish margin-between-sections">
+      <!-- <div class="homepage-publish margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2 class="mb-3">Publish your game</h2>
@@ -244,7 +223,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
 
     </div>
@@ -252,9 +231,9 @@
     <app-gameLauncherSingleGame v-if="launcherOnHomepage" :gameRoute="String(launcherOnHomepage)">
     </app-gameLauncherSingleGame>
 
-    <div class="homepage-made-by">
+    <!-- <div class="homepage-made-by">
       Story Synth is made and by <a href="https://randylubin.com">Randy Lubin</a> with the help of an awesome community!
-    </div>
+    </div> -->
 
   </div>
 </template>

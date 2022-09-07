@@ -195,7 +195,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p>Upload your game to Storysynth at a secret but shareable link.</p>
+            <p>Upload your game to Play.Amble at a secret but shareable link.</p>
           </div>
           <app-gameMaker v-if="!launcherOnHomepage" :routeRoomID="$route.params.roomID"
             :routeGSheetID="$route.params.gSheetID" :routeGameType="$route.params.gameType"></app-gameMaker>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <router-view></router-view>-->
-    <div v-if="$route.path !== '/about'">
+    <div>
 
       <app-header class=""></app-header>
 
@@ -12,7 +12,7 @@
             :routeGameType="$route.params.gameType"></app-homepage>
         </div>
 
-        <div v-if="$route.fullPath == '/Formats/'">
+        <!-- <div v-if="$route.fullPath == '/Formats/'">
           <app-formatsAndExtensions></app-formatsAndExtensions>
         </div>
 
@@ -31,7 +31,7 @@
         <div v-if="$route.fullPath == '/Upload/'">
           <app-uploadPage :routeRoomID="$route.params.roomID" :routeGSheetID="$route.params.gSheetID"
             :routeGameType="$route.params.gameType"></app-uploadPage>
-        </div>
+        </div> -->
 
         <app-game
           v-if="firebaseAuth && $route.params.gameType && !['CSS-Playground', 'Grants', 'Gallery', 'Formats', 'Upload'].includes($route.params.gameType)"
@@ -65,13 +65,13 @@ export default {
     'app-header': () => import('./components/layout/Header.vue'),
 
     'app-homepage': () => import('./components/other/Homepage.vue'),
-    'app-gallery': () => import('./components/other/Gallery.vue'),
-    'app-formatsAndExtensions': () => import('./components/other/FormatsAndExtensionsOverview.vue'),
-    'app-grants': () => import('./components/other/Grants.vue'),
-    'app-CSSPlayground': () => import('./components/other/CSSPlayground.vue'),
+    // 'app-gallery': () => import('./components/other/Gallery.vue'),
+    // 'app-formatsAndExtensions': () => import('./components/other/FormatsAndExtensionsOverview.vue'),
+    // 'app-grants': () => import('./components/other/Grants.vue'),
+    // 'app-CSSPlayground': () => import('./components/other/CSSPlayground.vue'),
 
     'app-game': () => import('./components/layout/Game.vue'),
-    'app-uploadPage': () => import('./components/launchers/UploadPage.vue'),
+    // 'app-uploadPage': () => import('./components/launchers/UploadPage.vue'),
     // 'app-customGameLauncher': () => import('./components/games/CustomGameLauncher.vue'),
     // 'app-customGameSessionManager': CustomGameSessionManager,
 

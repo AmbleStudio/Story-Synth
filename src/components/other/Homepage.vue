@@ -16,7 +16,7 @@
       </div> -->
 
       <div class="homepage-about">
-        <div class="row margin-between-sections">
+        <div class="row">
           <div class="col-sm mb-4">
           <p>
           Play.Amble is a gaming platform that hosts some of Amble's digital
@@ -35,18 +35,17 @@
             <div class="card shadow h-100">
               <div class="row no-gutters">
                 <div class="col-lg-4">
-                  <a href="/Games/Around-The-Realm">
-                    <img src="https://img.itch.zone/aW1nLzQ4MzI3NjAucG5n/315x250%23cb/Kb6Vr8.png"
-                      alt="Around the Realm logo" class="card-img">
+                  <a href="/Games/Green-Hollow/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Green-Hollow-Play.Amble-Gallery.png"
+                      alt="Green Hollow logo" class="card-img">
                   </a>
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body d-flex flex-column h-100">
-                    <h5 class="card-title">Around the Realm</h5>
-                    <h6 class="card-subtitle text-muted mb-2">By Randy Lubin</h6>
-                    <div class="card-text">Tell the story of two companions racing around a fantasy world in order to
-                      win a wager.</div>
-                    <a href="/Games/Around-The-Realm" target="_self"
+                    <h5 class="card-title">Green Hollow</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">A tiny quest to change your village for the better, and explore real world teamwork at the same time.</div>
+                    <a href="/Games/Green-Hollow/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
                 </div>
@@ -58,16 +57,38 @@
             <div class="card shadow h-100">
               <div class="row no-gutters">
                 <div class="col-lg-4">
-                  <a href="/Monster/1ARqKs4GQP023DqHBEGFxOu2nwRScCR_FgFPrX67JClk/">
-                    <img src="https://iili.io/jAMajf.png" alt="Fedora Noir logo" class="card-img">
+                  <a href="/Games/Office-Heroes/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Office-Heroes-Play.Amble_.png" alt="Office Heroes logo" class="card-img">
                   </a>
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body d-flex flex-column h-100">
-                    <h5 class="card-title">Fedora Noir</h5>
-                    <h6 class="card-subtitle text-muted mb-2">By Caroline Hobbs & Morgan Stinson</h6>
-                    <div class="card-text">A game about a detective and their hat.</div>
-                    <a href="/Monster/1ARqKs4GQP023DqHBEGFxOu2nwRScCR_FgFPrX67JClk/" target="_self"
+                    <h5 class="card-title">Office Heroes</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">A game of superheroes with wild, office-based powers.</div>
+                    <a href="/Games/Office-Heroes/" target="_self"
+                      class="btn mt-auto align-self-start stretched-link ">Play game</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="offset-lg-0 col-lg-12 col-md-4 mb-2">
+            <div class="card shadow h-100">
+              <div class="row no-gutters">
+                <div class="col-lg-4">
+                  <a href="/Games/Tumbledown-Grove/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Tumbledown-Grove-Play.Amble-logo.png"
+                      alt="Tumbledown Grove logo" class="card-img">
+                  </a>
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body d-flex flex-column h-100">
+                    <h5 class="card-title">Tumbledown Grove</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">An interactive story about feelings that makes your child the main character of their own fantastic tale.</div>
+                    <a href="/Games/Tumbledown-Grove/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
                 </div>
@@ -97,7 +118,10 @@
               </div>
             </div>
           </div>
+
         </div>
+
+        
 
         <!-- <div class="row mt-3">
           <div class="col-sm">

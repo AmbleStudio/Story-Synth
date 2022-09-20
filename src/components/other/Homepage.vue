@@ -7,14 +7,6 @@
         </div>
       </div>
 
-      <!-- <div class="homepage-gif row rounded-m clipped mb-4 shadow">
-        <div class="embed-responsive embed-responsive-16by9">
-          <video class="embed-responsive-item" autoplay loop controls muted>
-            <source src="https://diegeticgames.com/uploads/story-synth-teaser.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div> -->
-
       <div class="homepage-about">
         <div class="row">
           <div class="col-sm mb-4">

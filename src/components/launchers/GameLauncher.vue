@@ -31,7 +31,7 @@
           <div id="homepage-intro-text" v-if="!routeGSheetID">
             <div class="row mb-4">
               <div class="col-sm text-center">
-                <h1>Story Synth</h1>
+                <h1>Play.Amble</h1>
                 <h3>Game Launcher</h3>
               </div>
             </div>

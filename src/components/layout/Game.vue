@@ -482,7 +482,7 @@ export default {
           },
           {
             property: "og:site_name",
-            content: "Story Synth",
+            content: "Play.Amble",
             vmid: "og:site_name",
           },
           {

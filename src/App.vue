@@ -92,31 +92,31 @@ export default {
   },
   metaInfo() {
     return {
-      title: "Story Synth",
+      title: "Play.Amble",
       meta: [
         {
           property: 'description',
-          content: 'A platform for designing and playing storytelling games online. Free to use, open source, no coding knowledge needed.',
+          content: 'A gaming platform that hosts some of Amble\'s digital games',
           vmid: 'description'
         },
         {
           property: 'og:title',
-          content: 'Story Synth',
+          content: 'Play.Amble',
           vmid: 'og:title'
         },
         {
           property: 'og:description',
-          content: 'A platform for designing and playing storytelling games online.',
+          content: 'A gaming platform that hosts some of Amble\'s digital games',
           vmid: 'og:description'
         },
         {
           property: 'og:image',
-          content: 'https://storysynth.org/img/story-synth-square-logo.gif',
+          content: 'https://amble.studio/wp-content/uploads/2022/09/Play.Amble-Square-Logo.png',
           vmid: 'og:image'
         },
         {
           property: 'og:url',
-          content: 'https://storysynth.org/',
+          content: 'https://play.amble.studio/',
           vmid: 'og:url'
         },
         {
@@ -126,14 +126,15 @@ export default {
         },
         {
           property: 'og:site_name',
-          content: 'Story Synth',
+          content: 'Play.Amble',
           vmid: 'og:site_name'
         },
         {
           property: 'twitter:image:alt',
-          content: 'The Story Synth Logo',
+          content: 'The Amble Studio Logo',
           vmid: 'twitter:image:alt'
         },
+        // TODO: update or remove this for Amble 
         {
           name: 'monetization',
           content: '$ilp.uphold.com/WMbkRBiZFgbx',

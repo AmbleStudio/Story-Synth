@@ -3,7 +3,9 @@ import Vue from "vue";
 import VueMeta from "vue-meta";
 Vue.use(VueMeta);
 
-import { marked } from "marked";
+import {
+  marked
+} from "marked";
 Vue.prototype.$marked = marked;
 
 import VueDOMPurifyHTML from "vue-dompurify-html";
@@ -97,7 +99,9 @@ import App from "./App.vue";
 
 import VueGtag from "vue-gtag";
 Vue.use(VueGtag, {
-  config: { id: "G-B8L2T2PSP7" },
+  config: {
+    id: "G-B8L2T2PSP7"
+  },
 });
 
 import VueMixpanel from "vue-mixpanel";
@@ -108,11 +112,26 @@ Vue.use(VueMixpanel, {
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-const routes = [
-  { path: "/", component: App },
-  { path: "/:gameType/:gSheetID/", component: App },
-  { path: "/:gameType/:gSheetID/:roomID", component: App },
-  { path: "/:gameType/:gSheetID/:roomID/:userRole", component: App },
+const routes = [{
+    path: "/",
+    component: App
+  },
+  {
+    path: "/Games/",
+    redirect: "/"
+  },
+  {
+    path: "/:gameType/:gSheetID/",
+    component: App
+  },
+  {
+    path: "/:gameType/:gSheetID/:roomID",
+    component: App
+  },
+  {
+    path: "/:gameType/:gSheetID/:roomID/:userRole",
+    component: App
+  },
 ];
 
 const router = new VueRouter({

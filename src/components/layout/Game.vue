@@ -490,11 +490,11 @@ export default {
             content: this.customOptions?.gameTitle + " logo",
             vmid: "twitter:image:alt",
           },
-          {
-            name: "monetization",
-            content: this.selectedWallet,
-            vmid: "monetization",
-          },
+          // {
+          //   name: "monetization",
+          //   content: this.selectedWallet,
+          //   vmid: "monetization",
+          // },
         ],
       };
     }

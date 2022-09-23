@@ -135,11 +135,11 @@ export default {
           vmid: 'twitter:image:alt'
         },
         // TODO: update or remove this for Amble 
-        {
-          name: 'monetization',
-          content: '$ilp.uphold.com/WMbkRBiZFgbx',
-          vmid: 'monetization'
-        },
+        // {
+        //   name: 'monetization',
+        //   content: '$ilp.uphold.com/WMbkRBiZFgbx',
+        //   vmid: 'monetization'
+        // },
 
       ]
     }

@@ -117,10 +117,6 @@ const routes = [{
     component: App
   },
   {
-    path: "/Games/",
-    redirect: "/"
-  },
-  {
     path: "/:gameType/:gSheetID/",
     component: App
   },
@@ -131,6 +127,10 @@ const routes = [{
   {
     path: "/:gameType/:gSheetID/:roomID/:userRole",
     component: App
+  },
+  {
+    path: "/Games/",
+    redirect: "/"
   },
 ];
 

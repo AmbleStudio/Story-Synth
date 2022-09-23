@@ -70,7 +70,7 @@
             !customOptions.gameCover
           ">
             <div class="col-sm text-center">
-              <h1>Playtest with Story Synth</h1>
+              <h1>Playtest with Play.Amble</h1>
               <div class="col-sm">
                 This session will use the {{ routeGameType }} template and
                 <a v-bind:href="

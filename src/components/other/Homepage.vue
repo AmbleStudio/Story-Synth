@@ -10,11 +10,13 @@
       <div class="homepage-about">
         <div class="row">
           <div class="col-sm mb-4">
-          <p>
-          Play.Amble is a gaming platform that hosts some of Amble's digital
-          games. It is based on the <a href="http://storysynth.org">Story Synth</a> open source software platform, which you can use to make your own story games. Explore selected Amble games below, or visit our main site at <a href="http://amble.studio">Amble.Studio</a> to learn more, and find more games.
-        </p>
-        </div>
+            <p>
+              Play.Amble is a gaming platform that hosts some of Amble's digital
+              games. It is based on the <a href="http://storysynth.org">Story Synth</a> open source software platform,
+              which you can use to make your own story games. Explore selected Amble games below, or visit our main site
+              at <a href="http://amble.studio">Amble.Studio</a> to learn more, and find more games.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -36,7 +38,8 @@
                   <div class="card-body d-flex flex-column h-100">
                     <h5 class="card-title">Green Hollow</h5>
                     <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
-                    <div class="card-text">A tiny quest to change your village for the better, and explore real world teamwork at the same time.</div>
+                    <div class="card-text">A tiny quest to change your village for the better, and explore real world
+                      teamwork at the same time.</div>
                     <a href="/Games/Green-Hollow/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
@@ -50,14 +53,15 @@
               <div class="row no-gutters">
                 <div class="col-lg-4">
                   <a href="/Games/Office-Heroes/">
-                    <img src="https://amble.studio/wp-content/uploads/2022/09/Office-Heroes-Play.Amble_.png" alt="Office Heroes logo" class="card-img">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Office-Heroes-Play.Amble_.png"
+                      alt="Office Heroes logo" class="card-img">
                   </a>
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body d-flex flex-column h-100">
                     <h5 class="card-title">Office Heroes</h5>
                     <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
-                    <div class="card-text">A game of superheroes with wild, office-based powers.</div>
+                    <div class="card-text">A funny, fast game of superheroes with wild office-based powers.</div>
                     <a href="/Games/Office-Heroes/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
@@ -79,7 +83,8 @@
                   <div class="card-body d-flex flex-column h-100">
                     <h5 class="card-title">Tumbledown Grove</h5>
                     <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
-                    <div class="card-text">An interactive story about feelings that makes your child the main character of their own fantastic tale.</div>
+                    <div class="card-text">An interactive story about feelings that makes your child the main character
+                      of their own fantastic tale.</div>
                     <a href="/Games/Tumbledown-Grove/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
@@ -113,7 +118,7 @@
 
         </div>
 
-        
+
 
         <!-- <div class="row mt-3">
           <div class="col-sm">

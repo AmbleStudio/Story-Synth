@@ -112,26 +112,12 @@ Vue.use(VueMixpanel, {
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-const routes = [{
-    path: "/",
-    component: App
-  },
-  {
-    path: "/:gameType/:gSheetID/",
-    component: App
-  },
-  {
-    path: "/:gameType/:gSheetID/:roomID",
-    component: App
-  },
-  {
-    path: "/:gameType/:gSheetID/:roomID/:userRole",
-    component: App
-  },
-  {
-    path: "/Games/",
-    redirect: "/"
-  },
+const routes = [
+  { path: "/", component: App },
+  { path: "/:gameType/:gSheetID/", component: App },
+  { path: "/:gameType/:gSheetID/:roomID", component: App },
+  { path: "/:gameType/:gSheetID/:roomID/:userRole", component: App },
+  { path: "/Games/", redirect: "/" },
 ];
 
 const router = new VueRouter({

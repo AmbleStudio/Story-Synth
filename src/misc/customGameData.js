@@ -1,4 +1,21 @@
 var customGameData = {
+  "Green-Hollow": {
+    gameType: "Shuffled",
+    "gameTitle": "Green Hollow",
+    "gameBlurb":
+      "A tiny quest to change your village for the better, and explore real world teamwork at the same time.",
+    "ogImage":
+      "https://amble.studio/wp-content/uploads/2022/09/Green-Hollow-Rectangle-Story-Synth.png",
+    sheetID: "1hvNH35dVE-n-iYvjX5TEtK3yvZm7wcrVMruIJgw9roY",
+    "customOptions": {
+      "gameTitle": "Green Hollow",
+      "byline": "By Amble Studio",
+      "gameBlurb":
+        "A tiny quest to change your village for the better, and explore real world teamwork at the same time.",
+      "coverImage":
+        "https://amble.studio/wp-content/uploads/2022/09/Green-Hollow-Rectangle-Story-Synth.png",
+    },
+  },
   "Around-The-Realm": {
     gameType: "Phases",
     "gameTitle": "Around The Realm",

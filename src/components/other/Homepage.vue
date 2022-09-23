@@ -3,71 +3,44 @@
     <div class="container">
       <div class="homepage-header row padding-after-navbar mb-4">
         <div class="col-sm text-center">
-          <h1><img src="/img/story-synth-logotype.svg" alt="Story Synth Logo"></h1>
-          <h2>Make, play, and share storytelling games</h2>
+          <h2 class="text-center mb-4">Welcome to Play.Amble</h2>
         </div>
       </div>
 
-      <div class="homepage-gif row rounded-m clipped mb-4 shadow">
-        <div class="embed-responsive embed-responsive-16by9">
-          <video class="embed-responsive-item" autoplay loop controls muted>
-            <source src="https://diegeticgames.com/uploads/story-synth-teaser.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-
-      <div class="homepage-about margin-between-sections">
-        <div class="row margin-between-sections">
-          <h3 class="col-sm mb-4">
-            Story Synth is a free web platform for making, playing, and sharing storytelling games. Just design in
-            Google Sheets and publish here!
-          </h3>
-        </div>
+      <div class="homepage-about">
         <div class="row">
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Easy to start</h3>
-            <div>Jump start your design with dozens of templates, formats, and extensions</div>
-            <!-- Formats by Bart van der Griendt from NounProject.com https://thenounproject.com/icon/formats-687218/ -->
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px; transform:scale(0.9);"
-              src="/img/options.svg" alt="an icon of several pages, representing different formats and templates">
-          </div>
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Design in Sheets</h3>
-            <div>Your content lives in Google Sheets, so designing is quick and iteration is instantaneous</div>
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px; transform: translateY(1.5%);"
-              src="/img/sheet-to-synth.svg" alt="an icon of a sheet turning into a Story Synth session">
-          </div>
-          <div class="col-md-4 col-sm-12 d-flex flex-column">
-            <h3>Multiplayer</h3>
-            <div>Game sessions have realtime multiplayer, perfect for online playtesting and publishing</div>
-            <!-- icon by Iconathon https://thenounproject.com/icon/networking-2909312/-->
-            <img class="img img-fluid mx-auto mt-auto px-3 py-1" style="max-width: 250px;" src="/img/connection.svg"
-              alt="an icon of people connected around the globe, signifying the realtime multiplayer of Story Synth">
+          <div class="col-sm mb-4">
+            <p>
+              Play.Amble is a gaming platform that hosts some of Amble's digital
+              games. It is based on the <a href="http://storysynth.org">Story Synth</a> open source software platform,
+              which you can use to make your own story games. Explore selected Amble games below, or visit our main site
+              at <a href="http://amble.studio">Amble.Studio</a> to learn more, and find more games.
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Section: play -->
       <div class="homepage-play margin-between-sections">
-        <h2 class="text-center mb-4">Play an existing game</h2>
+        <!-- <h2 class="text-center mb-4">Play an existing game</h2> -->
 
         <div class="row">
           <div class="offset-lg-0 col-lg-12 col-md-4 mb-2 d-flex flex-column">
             <div class="card shadow h-100">
               <div class="row no-gutters">
                 <div class="col-lg-4">
-                  <a href="/Games/Around-The-Realm">
-                    <img src="https://img.itch.zone/aW1nLzQ4MzI3NjAucG5n/315x250%23cb/Kb6Vr8.png"
-                      alt="Around the Realm logo" class="card-img">
+                  <a href="/Games/Green-Hollow/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Green-Hollow-Play.Amble-Gallery.png"
+                      alt="Green Hollow logo" class="card-img">
                   </a>
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body d-flex flex-column h-100">
-                    <h5 class="card-title">Around the Realm</h5>
-                    <h6 class="card-subtitle text-muted mb-2">By Randy Lubin</h6>
-                    <div class="card-text">Tell the story of two companions racing around a fantasy world in order to
-                      win a wager.</div>
-                    <a href="/Games/Around-The-Realm" target="_self"
+                    <h5 class="card-title">Green Hollow</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">A tiny quest to change your village for the better, and explore real world
+                      teamwork at the same time.</div>
+                    <a href="/Games/Green-Hollow/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
                 </div>
@@ -79,16 +52,40 @@
             <div class="card shadow h-100">
               <div class="row no-gutters">
                 <div class="col-lg-4">
-                  <a href="/Monster/1ARqKs4GQP023DqHBEGFxOu2nwRScCR_FgFPrX67JClk/">
-                    <img src="https://iili.io/jAMajf.png" alt="Fedora Noir logo" class="card-img">
+                  <a href="/Games/Office-Heroes/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Office-Heroes-Play.Amble_.png"
+                      alt="Office Heroes logo" class="card-img">
                   </a>
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body d-flex flex-column h-100">
-                    <h5 class="card-title">Fedora Noir</h5>
-                    <h6 class="card-subtitle text-muted mb-2">By Caroline Hobbs & Morgan Stinson</h6>
-                    <div class="card-text">A game about a detective and their hat.</div>
-                    <a href="/Monster/1ARqKs4GQP023DqHBEGFxOu2nwRScCR_FgFPrX67JClk/" target="_self"
+                    <h5 class="card-title">Office Heroes</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">A funny, fast game of superheroes with wild office-based powers.</div>
+                    <a href="/Games/Office-Heroes/" target="_self"
+                      class="btn mt-auto align-self-start stretched-link ">Play game</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="offset-lg-0 col-lg-12 col-md-4 mb-2">
+            <div class="card shadow h-100">
+              <div class="row no-gutters">
+                <div class="col-lg-4">
+                  <a href="/Games/Tumbledown-Grove/">
+                    <img src="https://amble.studio/wp-content/uploads/2022/09/Tumbledown-Grove-Play.Amble-logo.png"
+                      alt="Tumbledown Grove logo" class="card-img">
+                  </a>
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body d-flex flex-column h-100">
+                    <h5 class="card-title">Tumbledown Grove</h5>
+                    <h6 class="card-subtitle text-muted mb-2">By Amble Studio</h6>
+                    <div class="card-text">An interactive story about feelings that makes your child the main character
+                      of their own fantastic tale.</div>
+                    <a href="/Games/Tumbledown-Grove/" target="_self"
                       class="btn mt-auto align-self-start stretched-link ">Play game</a>
                   </div>
                 </div>
@@ -118,17 +115,20 @@
               </div>
             </div>
           </div>
+
         </div>
 
-        <div class="row mt-3">
+
+
+        <!-- <div class="row mt-3">
           <div class="col-sm">
             <a href="/Gallery" class="btn py-3 px-4 btn-lg">See all games</a>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Section: grant -->
-      <div class="margin-between-sections">
+      <!-- <div class="margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2>Grant Program</h2>
@@ -151,10 +151,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Section: create -->
-      <div class="homepage-create margin-between-sections">
+      <!-- <div class="homepage-create margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2>Create a new game</h2>
@@ -205,7 +205,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
       <!-- Section: test -->
       <div class="homepage-test margin-between-sections">
@@ -216,7 +216,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p>Upload your game to Storysynth at a secret but shareable link.</p>
+            <p>Upload your game to Play.Amble at a secret but shareable link.</p>
           </div>
           <app-gameMaker v-if="!launcherOnHomepage" :routeRoomID="$route.params.roomID"
             :routeGSheetID="$route.params.gSheetID" :routeGameType="$route.params.gameType"></app-gameMaker>
@@ -225,7 +225,7 @@
       </div>
 
       <!-- Section: publish -->
-      <div class="homepage-publish margin-between-sections">
+      <!-- <div class="homepage-publish margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2 class="mb-3">Publish your game</h2>
@@ -244,7 +244,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
 
     </div>
@@ -252,9 +252,9 @@
     <app-gameLauncherSingleGame v-if="launcherOnHomepage" :gameRoute="String(launcherOnHomepage)">
     </app-gameLauncherSingleGame>
 
-    <div class="homepage-made-by">
+    <!-- <div class="homepage-made-by">
       Story Synth is made and by <a href="https://randylubin.com">Randy Lubin</a> with the help of an awesome community!
-    </div>
+    </div> -->
 
   </div>
 </template>

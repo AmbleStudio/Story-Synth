@@ -482,7 +482,7 @@ export default {
           },
           {
             property: "og:site_name",
-            content: "Story Synth",
+            content: "Play.Amble",
             vmid: "og:site_name",
           },
           {
@@ -490,11 +490,11 @@ export default {
             content: this.customOptions?.gameTitle + " logo",
             vmid: "twitter:image:alt",
           },
-          {
-            name: "monetization",
-            content: this.selectedWallet,
-            vmid: "monetization",
-          },
+          // {
+          //   name: "monetization",
+          //   content: this.selectedWallet,
+          //   vmid: "monetization",
+          // },
         ],
       };
     }

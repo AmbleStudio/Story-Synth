@@ -3,7 +3,9 @@ import Vue from "vue";
 import VueMeta from "vue-meta";
 Vue.use(VueMeta);
 
-import { marked } from "marked";
+import {
+  marked
+} from "marked";
 Vue.prototype.$marked = marked;
 
 import VueDOMPurifyHTML from "vue-dompurify-html";
@@ -67,8 +69,8 @@ Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.component("BIcon", BIcon);
 Vue.component("BIconArrowsExpand", BIconArrowsExpand),
-Vue.component("BIconArrowsCollapse", BIconArrowsCollapse),
-Vue.component("BIconPencil", BIconPencil);
+  Vue.component("BIconArrowsCollapse", BIconArrowsCollapse),
+  Vue.component("BIconPencil", BIconPencil);
 Vue.component("BIconTrash", BIconTrash);
 Vue.component("BIconCheck2", BIconCheck2);
 Vue.component("BIconList", BIconList);
@@ -97,7 +99,9 @@ import App from "./App.vue";
 
 import VueGtag from "vue-gtag";
 Vue.use(VueGtag, {
-  config: { id: "G-B8L2T2PSP7" },
+  config: {
+    id: "G-B8L2T2PSP7"
+  },
 });
 
 import VueMixpanel from "vue-mixpanel";
@@ -113,7 +117,7 @@ const routes = [
   { path: "/:gameType/:gSheetID/", component: App },
   { path: "/:gameType/:gSheetID/:roomID", component: App },
   { path: "/:gameType/:gSheetID/:roomID/:userRole", component: App },
-  { path: "/Games/", redirect: "/Gallery/"},
+  { path: "/Games/", redirect: "/" },
 ];
 
 const router = new VueRouter({

@@ -208,7 +208,7 @@
       </div> -->
 
       <!-- Section: test -->
-      <div class="homepage-test margin-between-sections">
+      <!-- <div class="homepage-test margin-between-sections">
         <div class="row">
           <div class="col-12">
             <h2 class='mb-3'>Get a playable link</h2>
@@ -222,7 +222,7 @@
             :routeGSheetID="$route.params.gSheetID" :routeGameType="$route.params.gameType"></app-gameMaker>
         </div>
 
-      </div>
+      </div> -->
 
       <!-- Section: publish -->
       <!-- <div class="homepage-publish margin-between-sections">
@@ -260,13 +260,13 @@
 </template>
 
 <script>
-import GameMaker from "../launchers/GameMaker.vue";
+// import GameMaker from "../launchers/GameMaker.vue";
 import GameLauncherSingleGame from "../launchers/GameLauncherSingleGame.vue"
 
 export default {
   name: "app-homepage",
   components: {
-    "app-gameMaker": GameMaker,
+    // "app-gameMaker": GameMaker,
     "app-gameLauncherSingleGame": GameLauncherSingleGame,
   },
   props: {

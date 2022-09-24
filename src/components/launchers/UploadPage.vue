@@ -3,11 +3,12 @@
     <div class="container padding-after-navbar">
       <div class="row mb-4">
         <div class="col-12">
-          <h1>Story Synth Game Maker</h1>
+          <h1>Play.Amble Game Maker</h1>
           <div class="my-4">
-            <p>Pick your game's format and then paste in your Google Sheet link to create your game. If you're looking
-              for inspiration, check out the <a href="/Formats">Formats Page</a> or the <a
-                href="https://docs.storysynth.org/guide/design.html#_1-copy-the-template-spreadsheet">Guide</a>.</p>
+            <p><b>This is a secret to everybody.</b></p>
+            <p>This page is intended for the Amble Troupe only, for us to quickly share new ideas with playtesters. If
+              you want to try prototyping your own game, we encourage you to use the original <a
+                href="https://storysynth.org">Story Synth</a> which has the same features and helpful guides.</p>
           </div>
           <app-gameMaker pp-gameMaker :routeRoomID="$route.params.roomID" :routeGSheetID="$route.params.gSheetID"
             :routeGameType="$route.params.gameType"></app-gameMaker>

@@ -8,16 +8,16 @@
             extensionData.hexflowerAsExtension.indexOf('/edit')
           )
         " :gameType="'Hexflower'" :roomID="$route.params.roomID + '-hexflower-extensions'" v-if="
-          Boolean(extensionData.hexflowerAsExtension) &&
-          (!extensionList.hexflowerFirstVisible ||
-            extensionList.hexflowerFirstVisible <=
-              roomInfo.currentCardIndex) &&
-          (!extensionList.hexflowerLastVisible ||
-            extensionList.hexflowerLastVisible > roomInfo.currentCardIndex) &&
-          ((!extensionList.hexflowerAsExtensionLocation &&
-            extensionLocation == 'lower') ||
-            extensionList.hexflowerAsExtensionLocation == extensionLocation)
-        ">
+  Boolean(extensionData.hexflowerAsExtension) &&
+  (!extensionList.hexflowerFirstVisible ||
+    extensionList.hexflowerFirstVisible <=
+      roomInfo.currentCardIndex) &&
+  (!extensionList.hexflowerLastVisible ||
+    extensionList.hexflowerLastVisible > roomInfo.currentCardIndex) &&
+  ((!extensionList.hexflowerAsExtensionLocation &&
+    extensionLocation == 'lower') ||
+    extensionList.hexflowerAsExtensionLocation == extensionLocation)
+">
         </app-game>
         <app-game class="extension" :gameAsExtension="Boolean(extensionData.generatorAsExtension)" :gSheetID="
           extensionData.generatorAsExtension.substring(
@@ -25,30 +25,46 @@
             extensionData.generatorAsExtension.indexOf('/edit')
           )
         " :gameType="'Generator'" :roomID="$route.params.roomID + '-generator-extensions'" v-if="
-          Boolean(extensionData.generatorAsExtension) &&
-          (!extensionList.generatorFirstVisible ||
-            extensionList.generatorFirstVisible <=
-              roomInfo.currentCardIndex) &&
-          (!extensionList.generatorLastVisible ||
-            extensionList.generatorLastVisible > roomInfo.currentCardIndex) &&
-          ((!extensionList.generatorAsExtensionLocation &&
-            extensionLocation == 'lower') ||
-            extensionList.generatorAsExtensionLocation == extensionLocation)
-        ">
+  Boolean(extensionData.generatorAsExtension) &&
+  (!extensionList.generatorFirstVisible ||
+    extensionList.generatorFirstVisible <=
+    roomInfo.currentCardIndex) &&
+  (!extensionList.generatorLastVisible ||
+    extensionList.generatorLastVisible > roomInfo.currentCardIndex) &&
+  ((!extensionList.generatorAsExtensionLocation &&
+    extensionLocation == 'lower') ||
+    extensionList.generatorAsExtensionLocation == extensionLocation)
+">
         </app-game>
         <app-staticBox class="extension" :staticBoxContent="extensionData.staticBoxContent" v-if="
           extensionData.staticBoxContent &&
           (!extensionList.staticBoxContentFirstVisible ||
             extensionList.staticBoxContentFirstVisible <=
-              roomInfo.currentCardIndex) &&
+            roomInfo.currentCardIndex) &&
           (!extensionList.staticBoxContentLastVisible ||
             extensionList.staticBoxContentLastVisible >
-              roomInfo.currentCardIndex) &&
+            roomInfo.currentCardIndex) &&
           ((!extensionList.staticBoxLocation &&
             extensionLocation == 'lower') ||
             extensionList.staticBoxLocation == extensionLocation)
         ">
         </app-staticBox>
+        <app-interrupts class="extension" :extensionList="this.extensionList"
+          :interruptTopText="extensionList.interruptTopText" :currentInterrupt="extensionData.currentInterrupt"
+          :menuLocation="false" :roomInfo="roomInfo" :customOptions="customOptions" :userRole="userRole"
+          @process-extension-update="processExtensionUpdate($event)" v-if="
+            extensionList['interrupts'] &&
+            (!extensionList.interruptsFirstVisible ||
+              extensionList.interruptsFirstVisible <=
+                roomInfo.currentCardIndex) &&
+            (!extensionList.interruptsLastVisible ||
+              extensionList.interruptsLastVisible >
+                roomInfo.currentCardIndex) &&
+            ((!extensionList.interruptsLocation &&
+              extensionLocation == 'lower') ||
+              extensionList.interruptsLocation == extensionLocation)
+          ">
+        </app-interrupts>
         <app-playerTurnOrder class="extension" :playerTurnOrder="JSON.parse(extensionData.playerTurnOrder)"
           :playerTurnOrderHeader="extensionData.playerTurnOrderHeader"
           :playerTurnOrderButtonLabel="extensionData.playerTurnOrderButtonLabel" :playerTurnOrderFirstVisible="
@@ -58,34 +74,34 @@
             extensionList['playerTurnOrder'] &&
             (!extensionList.playerTurnOrderFirstVisible ||
               extensionList.playerTurnOrderFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.playerTurnOrderLastVisible ||
               extensionList.playerTurnOrderLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.playerTurnOrderLocation &&
               extensionLocation == 'lower') ||
               extensionList.playerTurnOrderLocation == extensionLocation)
           ">
         </app-playerTurnOrder>
         <app-imageGallery class="extension" :imageGallery="
-        extensionData.imageGallery
-          ? extensionData.imageGallery.split(',')
-          : null
-        " :imageCaptions="
-          extensionData.imageGalleryCaptions
-            ? extensionData.imageGalleryCaptions.split(',')
+          extensionData.imageGallery
+            ? extensionData.imageGallery.split(',')
             : null
-        " :imageAltText="
-          extensionData.imageGalleryAltText ? extensionData.imageGalleryAltText.split(',') : null
-        " :imageGalleryTitle="extensionData.imageGalleryTitle" :selectedImage="extensionData.selectedImage"
+        " :imageCaptions="
+  extensionData.imageGalleryCaptions
+    ? extensionData.imageGalleryCaptions.split(',')
+    : null
+" :imageAltText="
+  extensionData.imageGalleryAltText ? extensionData.imageGalleryAltText.split(',') : null
+" :imageGalleryTitle="extensionData.imageGalleryTitle" :selectedImage="extensionData.selectedImage"
           @process-extension-update="processExtensionUpdate($event)" v-if="
             extensionList['imageGallery'] &&
             (!extensionList.imageGalleryFirstVisible ||
               extensionList.imageGalleryFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.imageGalleryLastVisible ||
               extensionList.imageGalleryLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.imageGalleryLocation &&
               extensionLocation == 'lower') ||
               extensionList.imageGalleryLocation == extensionLocation)
@@ -96,7 +112,7 @@
             extensionList['plusMinus'] &&
             (!extensionList.plusMinusFirstVisible ||
               extensionList.plusMinusFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.plusMinusLastVisible ||
               extensionList.plusMinusLastVisible > roomInfo.currentCardIndex) &&
             ((!extensionList.plusMinusLocation &&
@@ -105,17 +121,17 @@
           ">
         </app-plusMinus>
         <app-editableList class="extension" :editableList="extensionData.editableList.split(',')"
-          :editableListTitle="extensionData.editableListTitle"
+          :editableListTitle="extensionData.editableListTitle" :editableListUpper="extensionData.editableListUpper"
           @process-extension-update="processExtensionUpdate($event)" v-if="
             (extensionList['editableList'] ||
               extensionList.editableListFirstVisible ||
               extensionList.editableListTitle) &&
             (!extensionList.editableListFirstVisible ||
               extensionList.editableListFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.editableListLastVisible ||
               extensionList.editableListLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.editableListLocation &&
               extensionLocation == 'lower') ||
               extensionList.editableListLocation == extensionLocation)
@@ -126,10 +142,10 @@
             extensionList['multiEditableLists'] &&
             (!extensionList.multiEditableListsFirstVisible ||
               extensionList.multiEditableListsFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.multiEditableListsLastVisible ||
               extensionList.multiEditableListsLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.multiEditableListsLocation &&
               extensionLocation == 'lower') ||
               extensionList.multiEditableListsLocation == extensionLocation)
@@ -141,10 +157,10 @@
             extensionList['diceRoller'] &&
             (!extensionList.diceRollerFirstVisible ||
               extensionList.diceRollerFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.diceRollerLastVisible ||
               extensionList.diceRollerLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.diceRollerLocation &&
               extensionLocation == 'lower') ||
               extensionList.diceRollerLocation == extensionLocation)
@@ -159,7 +175,7 @@
               extensionList.coinflipLocation == extensionLocation) &&
             (!extensionList.coinflipFirstVisible ||
               extensionList.coinflipFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.coinflipLastVisible ||
               extensionList.coinflipLastVisible > roomInfo.currentCardIndex)
           ">
@@ -170,10 +186,10 @@
             extensionList['standardDeck'] &&
             (!extensionList.standardDeckFirstVisible ||
               extensionList.standardDeckFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.standardDeckLastVisible ||
               extensionList.standardDeckLastVisible >
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             ((!extensionList.standardDeckLocation &&
               extensionLocation == 'lower') ||
               extensionList.standardDeckLocation == extensionLocation)
@@ -203,33 +219,33 @@
             extensionLocation == 'upper' &&
             (!extensionList.currentPlayerHeaderFirstVisible ||
               extensionList.currentPlayerHeaderFirstVisible <=
-                roomInfo.currentCardIndex) &&
+              roomInfo.currentCardIndex) &&
             (!extensionList.currentPlayerHeaderLastVisible ||
               extensionList.currentPlayerHeaderLastVisible >
-                roomInfo.currentCardIndex)
+              roomInfo.currentCardIndex)
           ">
         </app-currentPlayerHeader>
         <app-embedWebsite class="extension" :hardcodedWebsiteURL="extensionData.hardcodedWebsiteURL"
           :selectedWebsiteURL="extensionData.selectedWebsiteURL"
           :embedWebsiteMessage="extensionData.embedWebsiteMessage"
           @process-extension-update="processExtensionUpdate($event)" v-if="
-            (extensionList['hardcodedWebsiteURL'] ||
-              extensionList['embedWebsiteMessage']) &&
-            (((!extensionList.hardcodedWebsiteURLFirstVisible ||
-              extensionList.hardcodedWebsiteURLFirstVisible <=
-                roomInfo.currentCardIndex) &&
-              (!extensionList.hardcodedWebsiteURLLastVisible ||
-                extensionList.hardcodedWebsiteURLLastVisible >
-                  roomInfo.currentCardIndex)) ||
-              ((!extensionList.embedWebsiteMessageFirstVisible ||
-                extensionList.embedWebsiteMessageFirstVisible <=
-                  roomInfo.currentCardIndex) &&
-                (!extensionList.embedWebsiteMessageLastVisible ||
-                  extensionList.embedWebsiteMessageLastVisible >
-                    roomInfo.currentCardIndex))) &&
-            ((!extensionList.embededWebsiteLocation &&
-              extensionLocation == 'lower') ||
-              extensionList.embededWebsiteLocation == extensionLocation)
+  (extensionList['hardcodedWebsiteURL'] ||
+    extensionList['embedWebsiteMessage']) &&
+  (((!extensionList.hardcodedWebsiteURLFirstVisible ||
+    extensionList.hardcodedWebsiteURLFirstVisible <=
+    roomInfo.currentCardIndex) &&
+    (!extensionList.hardcodedWebsiteURLLastVisible ||
+      extensionList.hardcodedWebsiteURLLastVisible >
+      roomInfo.currentCardIndex)) ||
+    ((!extensionList.embedWebsiteMessageFirstVisible ||
+      extensionList.embedWebsiteMessageFirstVisible <=
+      roomInfo.currentCardIndex) &&
+      (!extensionList.embedWebsiteMessageLastVisible ||
+        extensionList.embedWebsiteMessageLastVisible >
+        roomInfo.currentCardIndex))) &&
+  ((!extensionList.embededWebsiteLocation &&
+    extensionLocation == 'lower') ||
+    extensionList.embededWebsiteLocation == extensionLocation)
           ">
         </app-embedWebsite>
         <!-- <app-downloadExtensionData :extensionData="extensionData" :gameTitle="gameTitle" v-if="(extensionList['journalEntries'] || extensionList['multiEditableLists'] || extensionList['editableList']) && ((!extensionList.downloadExtensionDataLocation && extensionLocation == 'lower') || (extensionList.downloadExtensionDataLocation == extensionLocation))"></app-downloadExtensionData> -->
@@ -259,12 +275,15 @@ export default {
     "app-plusMinus": () => import("./PlusMinus.vue"),
     "app-standardDeck": () => import("./StandardDeck.vue"),
     "app-staticBox": () => import("./StaticBox.vue"),
+    "app-interrupts": () => import("./Interrupts.vue"),
     // 'app-downloadExtensionData': () => import('./DownloadExtensionData.vue'),
   },
   props: {
     extensionData: Object,
     extensionList: Object,
     extensionLocation: String,
+    customOptions: Object,
+    userRole: String,
     roomInfo: Object,
     gameTitle: String,
   },

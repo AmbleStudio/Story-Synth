@@ -71,6 +71,15 @@ var customGameData = {
       "https://amble.studio/wp-content/uploads/2021/08/UmberdredTitle-1.png",
     sheetID: "1loEjdT3ysVwHHy-_8f6slb4XSipOCi-Q_M_flkcx7Tw",
   },
+    "Active-Town": {
+    gameType: "Shuffled",
+    "gameTitle": "Active Town",
+    "gameBlurb":
+      "A tiny quest to find your path and change your village for the better.",
+    "ogImage":
+      "https://amble.studio/wp-content/uploads/2022/12/Active-Town-Square.png",
+    sheetID: "19WWgPzcXsIMA3f57r8zSezAwvB7_U5LJ67utKXX-NEs",
+  },
 }
 
 export default customGameData
